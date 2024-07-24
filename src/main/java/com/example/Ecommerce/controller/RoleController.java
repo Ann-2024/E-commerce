@@ -19,7 +19,7 @@ public class RoleController {
     @PostMapping("/admin")
     @PreAuthorize("hasAuthority('admin:create')")
     public String postAdmin() {
-        return "Secured Endpoint :: POST - Admin controller";
+        return "Secured Endpoint :: POST - Admin controllers";
 
     }
     @PutMapping("/admin/{id}")
