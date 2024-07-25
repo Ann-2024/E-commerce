@@ -1,6 +1,7 @@
 package com.example.Ecommerce.user;
 
 
+import com.example.Ecommerce.Users.Users;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,19 +21,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
-
     private String email;
 
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private Users users;
 
-
+    public String getPassword() {
+        return password;
+    }
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -74,5 +77,7 @@ public class User implements UserDetails {
 
         return true;
     }
+
+
 }
 

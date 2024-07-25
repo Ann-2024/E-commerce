@@ -1,6 +1,6 @@
 package com.example.Ecommerce.config;
 
-import com.example.Ecommerce.user.repository.UserRepository;
+import com.example.Ecommerce.user.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository userRepository;
+    private final UsersRepository usersRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -27,7 +27,7 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username)
+        return username -> (org.springframework.security.core.userdetails.UserDetails) usersRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
     }

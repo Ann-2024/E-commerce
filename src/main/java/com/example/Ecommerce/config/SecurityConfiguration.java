@@ -31,7 +31,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/ecommerce/v1/auth/**","/ecommerce/v1/**")
+                        req.requestMatchers("/ecommerce/v1/auth/**","/ecommerce/v1/**","/api/users/**","/api/Address/**")
                                 .permitAll()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
                                 .requestMatchers(GET, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_READ.getPermission(),SELLER_READ.getPermission(), CUSTOMER_READ.getPermission())
