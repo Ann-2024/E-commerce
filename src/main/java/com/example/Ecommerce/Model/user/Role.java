@@ -1,4 +1,4 @@
-package com.example.Ecommerce.user;
+package com.example.Ecommerce.Model.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.example.Ecommerce.user.Permission.*;
+import static com.example.Ecommerce.Model.user.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {

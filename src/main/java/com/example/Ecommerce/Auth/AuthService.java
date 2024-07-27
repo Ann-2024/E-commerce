@@ -1,8 +1,8 @@
 package com.example.Ecommerce.Auth;
 
 import com.example.Ecommerce.config.JwtService;
-import com.example.Ecommerce.user.User;
-import com.example.Ecommerce.user.repository.UserRepository;
+import com.example.Ecommerce.Model.user.User;
+import com.example.Ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

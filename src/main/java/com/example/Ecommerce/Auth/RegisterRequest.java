@@ -3,7 +3,7 @@ package com.example.Ecommerce.Auth;
 
 
 
-import com.example.Ecommerce.user.Role;
+import com.example.Ecommerce.Model.user.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

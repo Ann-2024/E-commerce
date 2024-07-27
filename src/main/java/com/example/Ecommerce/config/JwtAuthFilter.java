@@ -28,7 +28,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
              @NonNull HttpServletResponse response,
              @NonNull FilterChain filterChain)
             throws ServletException, IOException {
-        //Verify whether request has Authorization header and it has Bearer in it
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String email;
@@ -39,8 +38,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         //Extract jwt from the Authorization
         jwt = authHeader.substring(7);
-        //Verify whether user is present in db
-        //Verify whether token is valid
         email = jwtService.extractUsername(jwt);
         //If user is present and no authentication object in securityContext
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -58,8 +55,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
-    //Verify if it is whitelisted path and if yes dont do anything
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) throws ServletException {
         return request.getServletPath().contains("/ecommerce/v1/auth");

@@ -1,19 +1,15 @@
-package com.example.Ecommerce.Addresses;
+package com.example.Ecommerce.Service;
 
 
-import com.example.Ecommerce.Users.Users;
-import com.example.Ecommerce.user.repository.AddressRepository;
-import com.example.Ecommerce.user.repository.UsersRepository;
+import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.repository.AddressRepository;
+import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class AddressService {

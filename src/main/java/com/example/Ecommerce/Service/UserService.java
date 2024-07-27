@@ -1,12 +1,12 @@
-package com.example.Ecommerce.Users;
+package com.example.Ecommerce.Service;
 
 
-import com.example.Ecommerce.user.repository.UsersRepository;
+import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;

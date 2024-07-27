@@ -1,6 +1,6 @@
-package com.example.Ecommerce.Addresses;
+package com.example.Ecommerce.Model.Addresses;
 
-import com.example.Ecommerce.Users.Users;
+import com.example.Ecommerce.Model.Users.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -27,8 +26,15 @@ public class Addresses{
     @JsonIgnore
     @JoinColumn(name = "userId", nullable = false)
     private Users users;
-
-    public Long getaddressId() {
+    private String title;
+    private String address_line_1;
+    private String address_line_2;
+    private String country;
+    private String city;
+    private String postalCode;
+    private String landmark;
+    private String phoneNumber;
+    private Date createdAt; public Long getaddressId() {
         return addressid;
     }
 
@@ -124,13 +130,5 @@ public class Addresses{
         this.createdAt = createdAt;
     }
 
-    private String title;
-    private String address_line_1;
-    private String address_line_2;
-    private String country;
-    private String city;
-    private String postalCode;
-    private String landmark;
-    private String phoneNumber;
-    private Date createdAt;
+
 }

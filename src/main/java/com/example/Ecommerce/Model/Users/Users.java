@@ -1,6 +1,6 @@
-package com.example.Ecommerce.Users;
+package com.example.Ecommerce.Model.Users;
 
-import com.example.Ecommerce.Addresses.Addresses;
+import com.example.Ecommerce.Model.Addresses.Addresses;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

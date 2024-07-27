@@ -1,4 +1,4 @@
-package com.example.Ecommerce.user;
+package com.example.Ecommerce.Model.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

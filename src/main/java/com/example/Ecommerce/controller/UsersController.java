@@ -1,5 +1,7 @@
-package com.example.Ecommerce.Users;
+package com.example.Ecommerce.controller;
 
+import com.example.Ecommerce.Service.UserService;
+import com.example.Ecommerce.Model.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/users")
-public class  UserController {
+public class UsersController {
     @Autowired
     private UserService userService;
 

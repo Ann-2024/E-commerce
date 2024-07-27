@@ -1,18 +1,16 @@
-package com.example.Ecommerce.user;
+package com.example.Ecommerce.Model.user;
 
 
-import com.example.Ecommerce.Users.Users;
+import com.example.Ecommerce.Model.Users.Users;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "`user`")

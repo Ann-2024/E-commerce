@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.example.Ecommerce.user.Permission.*;
-import static com.example.Ecommerce.user.Role.*;
+import static com.example.Ecommerce.Model.user.Permission.*;
+import static com.example.Ecommerce.Model.user.Role.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -31,7 +31,9 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/ecommerce/v1/auth/**","/ecommerce/v1/**","/api/users/**","/api/Address/**")
+                        req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**",
+                                        "/ecommerce/v1/**","/api/users/**",
+                                        "/api/Address/**","/api/seller/**")
                                 .permitAll()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
                                 .requestMatchers(GET, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_READ.getPermission(),SELLER_READ.getPermission(), CUSTOMER_READ.getPermission())
@@ -47,5 +49,4 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 }
