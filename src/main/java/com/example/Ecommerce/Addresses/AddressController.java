@@ -1,11 +1,10 @@
 package com.example.Ecommerce.Addresses;
 
-import com.example.Ecommerce.Users.UserService;
-import com.example.Ecommerce.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/Address")
@@ -13,14 +12,30 @@ public class  AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping
+
+
+    @GetMapping("/message")
+    public String getMsg(){
+
+        return "welcome to e-commerce";
+
+    }
+
+    @PostMapping("/addAddress")
+    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody Addresses  addresses) {
+        System.out.println("hello addres conntroller");
+        addressService.addNewAddresses(id,addresses);
+        return "Address added successfully";
+    }
+
+    @GetMapping("/allAddress")
     public List<Addresses> getAddresses() {
         return addressService.getAddresses();
     }
 
-    @PostMapping("/addAddress")
-    public void registerNewAddresses(@RequestParam (name ="id") @PathVariable Long id, @RequestBody Addresses  addresses) {
-        addressService.addNewAddresses(id,addresses);
+    @GetMapping("/byId/{id}")
+    public Optional<Addresses> getAddressBYId(@PathVariable(value = "id") Long addressid) {
+        return addressService.getAddressBYId(addressid);
     }
 
     @DeleteMapping(path = "{addressId}")
