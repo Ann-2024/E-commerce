@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/users")
@@ -11,10 +12,18 @@ public class  UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("{byuserId}")
+    @GetMapping("/allUser")
     public List<Users> getUsers() {
         return userService.getUsers();
     }
+
+
+    @GetMapping("/byId/{id}")
+    public Optional<Users> getUser(@PathVariable("id") Long id) {
+       return   userService.getUser(id);
+
+    }
+
 
     @PostMapping("/adduser")
     public void registerNewUsers(@RequestBody Users users) {
@@ -22,8 +31,8 @@ public class  UserController {
     }
 
     @DeleteMapping(path = "{userId}")
-    public void deleteUsers(@PathVariable("userId") Long userId) {
-        userService.deleteUsers(userId);
+    public void deleteUsers(@PathVariable("userId") Long id) {
+        userService.deleteUsers(id);
     }
 
     @PutMapping(path = "{userId}")

@@ -1,12 +1,12 @@
 package com.example.Ecommerce.Users;
 
 
-import com.example.Ecommerce.user.repository.UsersRepository;
+import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -15,24 +15,37 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UsersRepository usersRepository;
+   @Autowired
+    private  UsersRepository usersRepository;
 
-    @Autowired
-    public UserService(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+   @Autowired
+    private  PasswordEncoder passwordEncoder;
+
+//    @Autowired
+//    public UserService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+//        this.usersRepository = usersRepository;
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
     public List<Users> getUsers() {
         return usersRepository.findAll();
     }
 
     public void addNewUsers(Users users) {
+        System.out.println("hello users service");
         Optional<Users> usersOptional = usersRepository.findByEmail(users.getEmail());
         if (usersOptional.isPresent()) {
             throw new IllegalStateException("Email taken");
         }
         users.setCreatedAt(new Date());
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+
         usersRepository.save(users);
+    }
+
+    public Optional<Users> getUser(Long id) {
+        return usersRepository.findById(id);
+
     }
 
     public void deleteUsers(Long userId) {
@@ -53,6 +66,7 @@ public class UserService {
         String firstName = updatedUsers.getFirstName();
         String lastName = updatedUsers.getLastName();
         String username = updatedUsers.getUsername();
+        String password = updatedUsers.getPassword();
         String email = updatedUsers.getEmail();
         LocalDate birthofDate = updatedUsers.getBirthOfDate();
         String phoneNumber = updatedUsers.getPhoneNumber();
@@ -66,6 +80,7 @@ public class UserService {
         existingUsers.setFirstName(firstName);
         existingUsers.setLastName(lastName);
         existingUsers.setUsername(username);
+        existingUsers.setPassword(passwordEncoder.encode(password));
         existingUsers.setBirthOfDate(birthofDate);
         existingUsers.setPhoneNumber(phoneNumber);
         existingUsers.setCreatedAt(new Date());
@@ -109,6 +124,8 @@ public class UserService {
 //
 //        usersRepository.save(existingUsers);
     }
+
+
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.Ecommerce.user.repository;
+package com.example.Ecommerce.repository;
 
 import com.example.Ecommerce.Addresses.Addresses;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
