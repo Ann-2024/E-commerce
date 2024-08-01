@@ -116,6 +116,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>user-e-commerce</finalName>
 	</build>
 
 </project>

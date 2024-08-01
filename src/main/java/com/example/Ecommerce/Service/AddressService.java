@@ -1,8 +1,7 @@
-package com.example.Ecommerce.Service;
+package com.example.Ecommerce.Addresses;
 
 
-import com.example.Ecommerce.Model.Addresses.Addresses;
-import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.Users.Users;
 import com.example.Ecommerce.repository.AddressRepository;
 import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressService {
@@ -24,13 +24,13 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public List<Addresses> getAddresses() {
-        return addressRepository.findAll();
-    }
 
     public void addNewAddresses(Long id,Addresses addresses) {
+
         Users users = usersRepository.findById(id).get();
-        if (users.equals(null)){
+
+        if (users == null){
+
             throw new RuntimeException("user not found");
         }else {
 
@@ -41,8 +41,21 @@ public class AddressService {
         }
     }
 
+    public List<Addresses> getAddresses() {
+
+        return addressRepository.findAll();
+
+    }
+
+    public Optional<Addresses> getAddressBYId(Long addressid) {
+
+        return addressRepository.findById(addressid);
+    }
+
     public void deleteAddresses(Long addressId) {
+
         boolean exists = addressRepository.existsById((long) Math.toIntExact(addressId));
+
         if (!exists) {
             throw new IllegalStateException("Address with id " + addressId + " does not exist");
         }
@@ -51,6 +64,7 @@ public class AddressService {
     }
 
     public void updateAddresses(Long addressId, Addresses updatedAddress) {
+
         Addresses existingAddress = addressRepository.findById(addressId)
                 .orElseThrow(() -> new IllegalStateException("Address with id " + addressId + " does not exist"));
 
@@ -66,4 +80,6 @@ public class AddressService {
 
         addressRepository.save(existingAddress);
     }
+
+
 }

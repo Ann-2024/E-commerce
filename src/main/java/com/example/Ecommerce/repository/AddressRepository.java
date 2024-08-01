@@ -1,6 +1,7 @@
 package com.example.Ecommerce.repository;
 
-import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Addresses.Addresses;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AddressRepository extends JpaRepository<Addresses,Long> {

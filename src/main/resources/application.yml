@@ -2,9 +2,9 @@ spring:
   application:
     name: Ecommerce
   datasource:
-    url: jdbc:postgresql://localhost:5432/jwt_ecommerce
+    url: jdbc:postgresql://host.docker.internal:5432/jwt_ecommerce
     username: postgres
-    password: Sqlserver123@
+    password: Johns@1995
   jpa:
     hibernate:
       ddl-auto: update
