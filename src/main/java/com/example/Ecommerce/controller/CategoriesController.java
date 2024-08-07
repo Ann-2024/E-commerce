@@ -1,16 +1,13 @@
 package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.Model.Categories.Categories;
-import com.example.Ecommerce.Model.Users.Addresses.Addresses;
-import com.example.Ecommerce.Model.Users.Users;
-import com.example.Ecommerce.Service.AddressService;
+import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/categories")
@@ -18,11 +15,14 @@ public class  CategoriesController {
     @Autowired
     private CategoriesService categoriesService;
 
-    @GetMapping
+    @GetMapping("/getall")
     public List<Categories> getCategories() {
         return categoriesService.getCategories();
     }
-
+    @GetMapping("/getall/{id}")
+    public Optional<Categories> getCategoriesBYId(@PathVariable(value = "id") Long categoriesId) {
+        return categoriesService.getCategoriesBYId(categoriesId);
+    }
     @PostMapping("/add")
     public void registerNewCategories(@RequestBody Categories categories) {
         categoriesService.addNewCategories(categories);

@@ -1,7 +1,10 @@
 package com.example.Ecommerce.Model.Products;
 
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
+import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
+import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,6 +34,13 @@ public class Products {
 
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductsSkus> productsSkus;
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Wishlist> wishlist;
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CartItem>cartItem;
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem>orderItem;
+
     @ManyToOne
     @JoinColumn(name = "subcategories_id", nullable = false)
     private SubCategories subCategories;

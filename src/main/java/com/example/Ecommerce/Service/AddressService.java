@@ -1,7 +1,8 @@
-package com.example.Ecommerce.Addresses;
+package com.example.Ecommerce.Service;
 
 
-import com.example.Ecommerce.Users.Users;
+import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.repository.AddressRepository;
 import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AddressService {
     }
 
 
-    public void addNewAddresses(Long id,Addresses addresses) {
+    public void addNewAddresses(Long id, Addresses addresses) {
 
         Users users = usersRepository.findById(id).get();
 
@@ -47,10 +48,10 @@ public class AddressService {
 
     }
 
-    public Optional<Addresses> getAddressBYId(Long addressid) {
-
-        return addressRepository.findById(addressid);
+    public Optional<Addresses> getAddressesBYId(Long addressId) {
+        return addressRepository.findById(addressId);
     }
+
 
     public void deleteAddresses(Long addressId) {
 

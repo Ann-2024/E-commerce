@@ -1,6 +1,9 @@
 package com.example.Ecommerce.Model.Users;
 
 import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Model.Cart.Cart;
+import com.example.Ecommerce.Model.Order.OrderDetails;
+import com.example.Ecommerce.Model.wishlist.Wishlist;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +26,12 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Wishlist> wishlist;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Cart> cart;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderDetails>orderDetails;
 
     private String avatar;
     private String firstName;

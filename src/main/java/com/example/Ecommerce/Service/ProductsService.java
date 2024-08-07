@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Service;
 
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.repository.ProductsRepository;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProductsService {
@@ -26,6 +24,11 @@ public class ProductsService {
     public List<Products> getProducts() {
         return productsRepository.findAll();
     }
+    public Optional<Products> getProductsBYId(Long productsId) {
+
+        return productsRepository.findById(productsId);
+    }
+
 
     public void addNewProducts(Long id, Products products) {
         SubCategories subCategories = subCategoriesRepository.findById(id).get();

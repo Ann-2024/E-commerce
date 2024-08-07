@@ -22,7 +22,7 @@
       container_name: db
       environment:
         - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=Johns@1995
+        - POSTGRES_PASSWORD=Sqlserver123@
         - POSTGRES_DB=jwt_ecommerce
       ports:
         - "5432:5432"

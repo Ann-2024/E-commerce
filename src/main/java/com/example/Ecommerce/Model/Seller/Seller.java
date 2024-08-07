@@ -1,7 +1,7 @@
 package com.example.Ecommerce.Model.Seller;
 
 
-import com.example.Ecommerce.Model.BankDetails_seller.BankDetails;
+import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

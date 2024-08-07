@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Service;
 
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.ProductsAttributes.ProductsAttributes;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
@@ -31,15 +32,14 @@ public class ProductsAttributesService {
     public List<ProductsAttributes> getProductsAttributes() {
         return productsAttributesRepository.findAll();
     }
+    public Optional<ProductsAttributes> getProductsAttributesBYId(Long productsAttributesId) {
 
+        return productsAttributesRepository.findById(productsAttributesId);
+    }
     public void addNewProductsAttributes(Long id,ProductsAttributes productsAttributes) {
-        ProductsSkus productsSkus = productsSkusRepository.findById(id).get();
-        if (productsSkus.equals(null)) {
-            throw new IllegalStateException("Email taken");
-        }
         productsAttributes.setCreatedAt(new Date());
         productsAttributes.setDeletedAt(new Date());
-        productsAttributes.setProductsSkus(productsSkus);
+
         productsAttributesRepository.save(productsAttributes);
     }
 

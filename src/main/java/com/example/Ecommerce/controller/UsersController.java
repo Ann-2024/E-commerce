@@ -1,5 +1,6 @@
 package com.example.Ecommerce.controller;
 
+import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.example.Ecommerce.Service.UserService;
 import com.example.Ecommerce.Model.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/users")
+@RequestMapping(path = "/api/users")
 public class UsersController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/allUser")
+    @GetMapping("/getall")
     public List<Users> getUsers() {
         return userService.getUsers();
     }
-
-
-    @GetMapping("/byId/{id}")
-    public Optional<Users> getUser(@PathVariable("id") Long id) {
-       return   userService.getUser(id);
-
+    @GetMapping("/getall/{id}")
+    public Optional<Users> getUsersBYId(@PathVariable(value = "id") Long usersId) {
+        return userService.getUsersBYId(usersId);
     }
 
 

@@ -1,5 +1,7 @@
-package com.example.Ecommerce.Addresses;
+package com.example.Ecommerce.controller;
 
+import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,35 +9,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/Address")
+@RequestMapping(path = "/api/address")
 public class  AddressController {
     @Autowired
     private AddressService addressService;
 
 
-
-    @GetMapping("/message")
-    public String getMsg(){
-
-        return "welcome to e-commerce";
-
-    }
-
-    @PostMapping("/addAddress")
-    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody Addresses  addresses) {
+    @PostMapping("/add")
+    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody Addresses addresses) {
         System.out.println("hello addres conntroller");
         addressService.addNewAddresses(id,addresses);
         return "Address added successfully";
     }
 
-    @GetMapping("/allAddress")
+    @GetMapping("/getall")
     public List<Addresses> getAddresses() {
         return addressService.getAddresses();
     }
 
-    @GetMapping("/byId/{id}")
-    public Optional<Addresses> getAddressBYId(@PathVariable(value = "id") Long addressid) {
-        return addressService.getAddressBYId(addressid);
+    @GetMapping("/getall/{id}")
+    public Optional<Addresses> getAddressesBYId(@PathVariable(value = "id") Long addressId) {
+        return addressService.getAddressesBYId(addressId);
     }
 
     @DeleteMapping(path = "{addressId}")

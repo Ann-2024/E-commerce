@@ -2,11 +2,10 @@ package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Products.Products;
+import com.example.Ecommerce.Model.Products.ProductsAttributes.ProductsAttributes;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
-import com.example.Ecommerce.repository.BankDetailsRepository;
-import com.example.Ecommerce.repository.CategoriesRepository;
-import com.example.Ecommerce.repository.ProductsRepository;
-import com.example.Ecommerce.repository.ProductsSkusRepository;
+import com.example.Ecommerce.Model.wishlist.Wishlist;
+import com.example.Ecommerce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,8 @@ public class ProductsSkusService {
     private final ProductsSkusRepository productsSkusRepository;
     @Autowired
     private ProductsRepository productsRepository;
+    @Autowired
+    private ProductsAttributesRepository productsAttributesRepository;
 
     @Autowired
     public ProductsSkusService(ProductsSkusRepository productsSkusRepository) {
@@ -31,18 +32,22 @@ public class ProductsSkusService {
     public List<ProductsSkus> getProductsSkus() {
         return productsSkusRepository.findAll();
     }
+    public Optional<ProductsSkus> getProductsSkusBYId(Long productsSkusId) {
 
+        return productsSkusRepository.findById(productsSkusId);
+    }
     public void addNewProductsSkus(Long id,ProductsSkus productsSkus) {
         Products products = productsRepository.findById(id).get();
-        if (products.equals(null)) {
-            throw new RuntimeException("user not found");
-        } else {
+        ProductsAttributes productsAttributes  =productsAttributesRepository.findById(id).get();
+
+
             productsSkus.setCreatedAt(LocalDateTime.now());
             productsSkus.setDeletedAt(LocalDateTime.now());
             productsSkus.setProducts(products);
+            productsSkus.setProductsAttributes(productsAttributes);
 
             productsSkusRepository.save(productsSkus);
-        }
+
     }
 
     public void deleteProductsSkus(Long productsSkusId) {

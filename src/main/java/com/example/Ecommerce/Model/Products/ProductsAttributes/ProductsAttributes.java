@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "products_attributes")
@@ -22,10 +23,8 @@ public class ProductsAttributes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "productsSkus_id", nullable = false)
-    private ProductsSkus productsSkus;
+    @OneToMany(mappedBy = "productsAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductsSkus> productsSkus;
 
     private String value;
 

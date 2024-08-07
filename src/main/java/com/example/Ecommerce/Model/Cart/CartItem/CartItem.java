@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "CartItem")
+@Table(name = "cartItem")
 @Data
 @Builder
 @AllArgsConstructor

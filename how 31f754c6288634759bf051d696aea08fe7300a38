@@ -1,0 +1,55 @@
+[33mcommit 31f754c6288634759bf051d696aea08fe7300a38[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mstaging[m[33m)[m
+Merge: a4534a2 4449e13
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Thu Aug 1 11:12:41 2024 +0530
+
+    Merge remote-tracking branch 'origin/staging' into staging
+    
+    # Conflicts:
+    #       src/main/java/com/example/Ecommerce/Auth/AuthService.java
+    #       src/main/java/com/example/Ecommerce/Model/Addresses/Addresses.java
+    #       src/main/java/com/example/Ecommerce/Service/AddressService.java
+    #       src/main/java/com/example/Ecommerce/Service/UserService.java
+    #       src/main/java/com/example/Ecommerce/Service/UsersServiceImpl.java
+    #       src/main/java/com/example/Ecommerce/config/ApplicationConfig.java
+    #       src/main/java/com/example/Ecommerce/controller/AddressController.java
+    #       src/main/java/com/example/Ecommerce/repository/AddressRepository.java
+
+[33mcommit 4449e130f413ccddc32551b58b073d3f69e99e63[m[33m ([m[1;31morigin/staging[m[33m)[m
+Merge: 8cdbfa4 03827a3
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Wed Jul 31 13:04:14 2024 +0530
+
+    Merge pull request #1 from Ann-2024/user-container
+    
+    docker integration
+
+[33mcommit 03827a3473e917b4a0c29768a51a82fe98342c26[m[33m ([m[1;31morigin/user-container[m[33m)[m
+Author: Johns George <johns.george@qbtechsolutions.com>
+Date:   Wed Jul 31 12:40:17 2024 +0530
+
+    docker integration
+
+[33mcommit a4534a29e354b37916ff37ca3da0bec8d84ee5ea[m
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Sat Jul 27 10:22:50 2024 +0530
+
+    seller details
+
+[33mcommit 8cdbfa4792b7b65947212dbab6a5fc118445def3[m
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Thu Jul 25 15:53:48 2024 +0530
+
+    user and adress
+
+[33mcommit 6e4dfa98461d2e84c018782c37d5d5c8489b05a5[m
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Wed Jul 24 11:54:45 2024 +0530
+
+    database to postgresql
+
+[33mcommit 7f11dbf3e354e00842b2afcf8ccd45912c08121f[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Ann-2024 <ann.denny@qbtechsolutions.com>
+Date:   Tue Jul 23 16:55:54 2024 +0530
+
+    first commit

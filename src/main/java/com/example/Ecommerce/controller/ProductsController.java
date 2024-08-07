@@ -1,13 +1,13 @@
 package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.Model.Products.Products;
-import com.example.Ecommerce.Model.Users.Addresses.Addresses;
-import com.example.Ecommerce.Service.AddressService;
+import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/products")
@@ -15,9 +15,13 @@ public class  ProductsController {
     @Autowired
     private   ProductsService productsService;
 
-    @GetMapping
+    @GetMapping("/getall")
     public List<Products> getProducts() {
         return productsService.getProducts();
+    }
+    @GetMapping("/getall/{id}")
+    public Optional<Products> getProductsBYId(@PathVariable(value = "id") Long productsId) {
+        return productsService.getProductsBYId(productsId);
     }
 
     @PostMapping("/add")

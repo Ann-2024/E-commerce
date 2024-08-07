@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Service;
 
-import com.example.Ecommerce.Model.BankDetails_seller.BankDetails;
+import com.example.Ecommerce.Model.Addresses.Addresses;
+import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.BankDetailsRepository;
 import com.example.Ecommerce.repository.SellerRepository;
@@ -26,9 +27,12 @@ public class BankDetailsService {
     public List<BankDetails> getBankDetails() {
         return bankDetailsRepository.findAll();
     }
+    public Optional<BankDetails> getBankDetailsBYId(Long bankDetailsId) {
 
+        return bankDetailsRepository.findById(bankDetailsId);
+    }
     public void addNewBankDetails(Long id,BankDetails bankDetails) {
-        Optional<BankDetails> bankDetailsOptional = bankDetailsRepository.findByAccountNumber(bankDetails.getAccountNumber());
+        Optional<BankDetails> bankDetailsOptional = bankDetailsRepository.findById(bankDetails.getId());
         if (bankDetailsOptional.isPresent()) {
             throw new IllegalStateException("AccountNumber taken");
         }

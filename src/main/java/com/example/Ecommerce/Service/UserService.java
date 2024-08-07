@@ -1,6 +1,9 @@
-package com.example.Ecommerce.Users;
+package com.example.Ecommerce.Service;
 
 
+import com.example.Ecommerce.Model.Products.Products;
+import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +15,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class UserService {
 
@@ -21,19 +26,17 @@ public class UserService {
    @Autowired
     private  PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    public UserService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
-//        this.usersRepository = usersRepository;
-//        this.passwordEncoder = passwordEncoder;
-//    }
-
     public List<Users> getUsers() {
         return usersRepository.findAll();
     }
 
+    public Optional<Users> getUsersBYId(Long usersId) {
+
+        return usersRepository.findById(usersId);
+    }
     public void addNewUsers(Users users) {
         System.out.println("hello users service");
-        Optional<Users> usersOptional = usersRepository.findByEmail(users.getEmail());
+        Optional<Users> usersOptional = usersRepository.findById(users.getId());
         if (usersOptional.isPresent()) {
             throw new IllegalStateException("Email taken");
         }
@@ -43,10 +46,6 @@ public class UserService {
         usersRepository.save(users);
     }
 
-    public Optional<Users> getUser(Long id) {
-        return usersRepository.findById(id);
-
-    }
 
     public void deleteUsers(Long userId) {
         boolean exists = usersRepository.existsById(userId);
@@ -86,43 +85,6 @@ public class UserService {
         existingUsers.setCreatedAt(new Date());
 
         usersRepository.save(existingUsers);
-//    if (avatar != null && !avatar.isEmpty() && !Objects.equals(existingUsers.getAvatar(), avatar)) {
-//            existingUsers.setAvatar(avatar);
-//        }
-//
-//        if (firstName != null && !firstName.isEmpty() && !Objects.equals(existingUsers.getFirstName(), firstName)) {
-//            existingUsers.setFirstName(firstName);
-//        }
-//
-//        if (lastName != null && !lastName.isEmpty() && !Objects.equals(existingUsers.getLastName(), lastName)) {
-//            existingUsers.setLastName(lastName);
-//        }
-//
-//        if (username != null && !username.isEmpty() && !Objects.equals(existingUsers.getUsername(), username)) {
-//            existingUsers.setUsername(username);
-//        }
-//
-        if (email != null && !email.isEmpty() && !Objects.equals(existingUsers.getEmail(), email)) {
-            Optional<Users> usersOptional = usersRepository.findByEmail(email);
-            if (usersOptional.isPresent()) {
-                throw new IllegalStateException("Email taken");
-            }
-            existingUsers.setEmail(email);
-        }
-//
-//        if (birthofDate != null && !Objects.equals(existingUsers.getBirthOfDate(),birthofDate)) {
-//            existingUsers.setBirthOfDate(birthofDate);
-//            System.out.println("Updated birthofDate: " + existingUsers.getBirthOfDate());
-//        }
-//        if (phoneNumber != null && !phoneNumber.isEmpty() && !Objects.equals(existingUsers.getPhoneNumber(), phoneNumber)) {
-//            existingUsers.setPhoneNumber(phoneNumber);
-//        }
-//
-//        if (createdAt != null && !Objects.equals(existingUsers.getCreatedAt(), createdAt)) {
-//            existingUsers.setCreatedAt(createdAt);
-//        }
-//
-//        usersRepository.save(existingUsers);
     }
 
 

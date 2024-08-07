@@ -1,9 +1,9 @@
-package com.example.Ecommerce.Model.Order;
+package com.example.Ecommerce.Model.Cart;
 
-
-import com.example.Ecommerce.Model.Cart.Cart;
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Products.Products;
-import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
+import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,35 +12,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "orderItem")
+@Table(name = "cart")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItem{
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CartItem>cartItem;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "order_Id", nullable = false)
-    private OrderDetails orderDetails;
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "product_Id", nullable = false)
-    private Products products;
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "products_sku_Id", nullable = false)
-    private ProductsSkus productsSkus;
+    @JoinColumn(name = "userId", nullable = false)
+    private Users users;
 
 
 
 
-    private String quantity;
+    private String total;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

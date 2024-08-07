@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Service;
 
+import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.BankDetailsRepository;
 import com.example.Ecommerce.repository.SellerRepository;
@@ -33,6 +34,10 @@ public class SellerService {
 //    }else {
 //        bankDetails.setSeller(seller.get());
 //    }
+public Optional<Seller> getSellerBYId(Long sellerId) {
+
+    return sellerRepository.findById(sellerId);
+}
 
     public void addNewSeller(Seller seller) {
         Optional<Seller> sellerOptional = sellerRepository.findByEmail(seller.getEmail());

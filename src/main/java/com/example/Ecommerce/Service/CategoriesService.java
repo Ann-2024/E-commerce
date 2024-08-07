@@ -1,5 +1,6 @@
 package com.example.Ecommerce.Service;
 
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.BankDetailsRepository;
@@ -29,7 +30,10 @@ public class CategoriesService {
     public List<Categories> getCategories() {
         return categoriesRepository.findAll();
     }
+    public Optional<Categories> getCategoriesBYId(Long categoriesId) {
 
+        return categoriesRepository.findById(categoriesId);
+    }
     public void addNewCategories(Categories categories) {
 
         categories.setCreatedAt(LocalDateTime.now());

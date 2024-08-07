@@ -32,8 +32,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**",
+                                        "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
+                                        "/api/products/**","/api/productsSkus/**","/api/cart/**",
+                                        "/api/productsAttributes/**","/api/cartItem/**",
+                                        ("/api/orderItem/**"),("/api/orderDetails/**"),
+                                        ("/api/paymentDetails/**"),
                                         "/ecommerce/v1/**","/api/users/**",
-                                        "/api/Address/**","/api/seller/**")
+                                        "/api/address/**","/api/seller/**")
                                 .permitAll()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
                                 .requestMatchers(GET, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_READ.getPermission(),SELLER_READ.getPermission(), CUSTOMER_READ.getPermission())

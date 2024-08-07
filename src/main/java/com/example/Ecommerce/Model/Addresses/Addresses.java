@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Model.Users.Addresses;
+package com.example.Ecommerce.Model.Addresses;
 
 import com.example.Ecommerce.Model.Users.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,7 +20,7 @@ public class Addresses{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long addressid;
+    private Long id;
 
     @ManyToOne
     @JsonIgnore
@@ -34,101 +34,103 @@ public class Addresses{
     private String postalCode;
     private String landmark;
     private String phoneNumber;
-    private Date createdAt; public Long getaddressId() {
-        return addressid;
-    }
+    private Date createdAt;
 
-    public void setId(Long id) {
-        this.addressid = id;
-    }
+//    public Long getaddressId() {
+//        return addressid;
+//    }
 
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAddress_line_1() {
-        return address_line_1;
-    }
-
-    public void setAddress_line_1(String address_line_1) {
-        this.address_line_1 = address_line_1;
-    }
-
-    public String getAddress_line_2() {
-        return address_line_2;
-    }
-
-    public void setAddress_line_2(String address_line_2) {
-        this.address_line_2 = address_line_2;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getLandmark() {
-        return landmark;
-    }
-
-    public void setLandmark(String landmark) {
-        this.landmark = landmark;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Long getAddressid() {
-        return addressid;
-    }
-
-    public void setAddressid(Long addressid) {
-        this.addressid = addressid;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+//    public void setId(Long id) {
+//        this.addressid = id;
+//    }
+//
+//    public Users getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Users users) {
+//        this.users = users;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public String getAddress_line_1() {
+//        return address_line_1;
+//    }
+//
+//    public void setAddress_line_1(String address_line_1) {
+//        this.address_line_1 = address_line_1;
+//    }
+//
+//    public String getAddress_line_2() {
+//        return address_line_2;
+//    }
+//
+//    public void setAddress_line_2(String address_line_2) {
+//        this.address_line_2 = address_line_2;
+//    }
+//
+//    public String getCountry() {
+//        return country;
+//    }
+//
+//    public void setCountry(String country) {
+//        this.country = country;
+//    }
+//
+//    public String getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
+//
+//    public String getPostalCode() {
+//        return postalCode;
+//    }
+//
+//    public void setPostalCode(String postalCode) {
+//        this.postalCode = postalCode;
+//    }
+//
+//    public String getLandmark() {
+//        return landmark;
+//    }
+//
+//    public void setLandmark(String landmark) {
+//        this.landmark = landmark;
+//    }
+//
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
+//
+//    public Long getAddressid() {
+//        return addressid;
+//    }
+//
+//    public void setAddressid(Long addressid) {
+//        this.addressid = addressid;
+//    }
+//
+//    public Date getCreatedAt() {
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(Date createdAt) {
+//        this.createdAt = createdAt;
+//    }
 
 
 }
