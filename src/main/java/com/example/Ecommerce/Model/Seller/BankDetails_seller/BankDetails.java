@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Model.BankDetails_seller;
+package com.example.Ecommerce.Model.Seller.BankDetails_seller;
 
 import com.example.Ecommerce.Model.Seller.Seller;
 import com.fasterxml.jackson.annotation.JsonBackReference;
