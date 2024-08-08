@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
                                         "/api/productsAttributes/**","/api/cartItem/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),
-                                        ("/api/paymentDetails/**"),
+                                        ("/api/paymentDetails/**"),("/api/notification/**"),
                                         "/ecommerce/v1/**","/api/users/**",
                                         "/api/address/**","/api/seller/**")
                                 .permitAll()

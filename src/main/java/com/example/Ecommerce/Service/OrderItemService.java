@@ -60,8 +60,10 @@ public class OrderItemService {
                 .orElseThrow(() -> new IllegalStateException("Product with id " + orderItemId + " does not exist"));
 
         String quantity = updatedOrderItem.getQuantity();
+        String status=updatedOrderItem.getStatus();
 
         existingOrderItem.setQuantity(quantity);
+        existingOrderItem.setStatus(status);
         existingOrderItem.setCreatedAt(LocalDateTime.now());
         existingOrderItem.setDeletedAt(LocalDateTime.now());
 

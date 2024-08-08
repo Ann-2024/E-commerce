@@ -2,9 +2,11 @@ package com.example.Ecommerce.Model.Order;
 
 
 import com.example.Ecommerce.Model.Cart.Cart;
+import com.example.Ecommerce.Model.Notification.Notification;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orderItem")
@@ -24,6 +27,8 @@ public class OrderItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Notification> notification;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "order_Id", nullable = false)
@@ -41,6 +46,7 @@ public class OrderItem{
 
 
     private String quantity;
+    private String status;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

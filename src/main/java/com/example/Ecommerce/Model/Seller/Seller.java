@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Model.Seller;
 
 
+import com.example.Ecommerce.Model.Notification.Notification;
 import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "seller")
@@ -37,7 +39,9 @@ public class Seller {
     private String imageUrl;
 
     @OneToOne(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private BankDetails bankDetails;
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Notification> notification;
+
 
 }

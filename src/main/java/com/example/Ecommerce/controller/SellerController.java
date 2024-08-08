@@ -24,7 +24,7 @@ public final class  SellerController {
         return sellerService.getSellerBYId(sellerId);
     }
 
-    @PostMapping("/addseller")
+    @PostMapping("/add")
     public String registerNewUsers(@RequestBody Seller seller) {
         sellerService.addNewSeller(seller);
         return "successfully added seller";
