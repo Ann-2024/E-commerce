@@ -34,7 +34,7 @@ public class BankDetailsService {
     public void addNewBankDetails(Long id,BankDetails bankDetails) {
         Optional<BankDetails> bankDetailsOptional = bankDetailsRepository.findById(bankDetails.getId());
         if (bankDetailsOptional.isPresent()) {
-            throw new IllegalStateException("AccountNumber taken");
+            throw new IllegalStateException("taken");
         }
 
         Optional<Seller> seller = sellerRepository.findById(id);
