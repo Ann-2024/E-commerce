@@ -29,13 +29,11 @@ public class SubCategories {
     private Long id;
 
     @OneToMany(mappedBy = "subCategories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<Products> products;
 
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonBackReference
     private Categories categories;
 
     private String name;
