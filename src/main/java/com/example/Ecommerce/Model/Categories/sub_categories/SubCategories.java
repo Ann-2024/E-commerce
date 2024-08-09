@@ -34,6 +34,7 @@ public class SubCategories {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference
     private Categories categories;
 
     private String name;
