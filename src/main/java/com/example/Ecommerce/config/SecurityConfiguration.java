@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                                         "/api/productsAttributes/**","/api/cartItem/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),
                                         ("/api/paymentDetails/**"),("/api/notification/**"),
-                                        "/ecommerce/v1/**","/api/users/**",
+                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**",
                                         "/api/address/**","/api/seller/**")
                                 .permitAll()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
