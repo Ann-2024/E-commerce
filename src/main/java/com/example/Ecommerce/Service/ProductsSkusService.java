@@ -36,15 +36,17 @@ public class ProductsSkusService {
 
         return productsSkusRepository.findById(productsSkusId);
     }
-    public void addNewProductsSkus(Long id,ProductsSkus productsSkus) {
-        Products products = productsRepository.findById(id).get();
-        ProductsAttributes productsAttributes  =productsAttributesRepository.findById(id).get();
+    public void addNewProductsSkus(Long productId,Long sizeAttributesId,Long colorAttributesId,ProductsSkus productsSkus) {
+        Products products = productsRepository.findById(productId).get();
+        ProductsAttributes sizeAttributes  =productsAttributesRepository.findById(sizeAttributesId).get();
+        ProductsAttributes colorAttributes  =productsAttributesRepository.findById(colorAttributesId).get();
 
 
             productsSkus.setCreatedAt(LocalDateTime.now());
             productsSkus.setDeletedAt(LocalDateTime.now());
             productsSkus.setProducts(products);
-            productsSkus.setProductsAttributes(productsAttributes);
+            productsSkus.setSizeAttributes(sizeAttributes);
+            productsSkus.setColorAttributes(colorAttributes);
 
             productsSkusRepository.save(productsSkus);
 
@@ -64,14 +66,12 @@ public class ProductsSkusService {
                 .orElseThrow(() -> new IllegalStateException("User with id " + productsSkusId + " does not exist"));
 
 
-        String sizeAttributeId = updatedProductsSkus.getSizeAttributeId();
-        String colorAttributeId = updatedProductsSkus.getColorAttributeId();
+
         String sku= updatedProductsSkus.getSku();
         String price = updatedProductsSkus.getPrice();
         String quantity = updatedProductsSkus.getQuantity();
 
-        existingProductsSkus.setSizeAttributeId(sizeAttributeId);
-        existingProductsSkus.setColorAttributeId(colorAttributeId);
+
         existingProductsSkus.setSku(sku);
         existingProductsSkus.setPrice(price);
         existingProductsSkus.setQuantity(quantity);

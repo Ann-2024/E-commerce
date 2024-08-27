@@ -33,8 +33,8 @@ public class  SubCategoriesController {
         subCategoriesService.deleteSubCategories(subCategoriesId);
     }
 
-    @PutMapping(path = "{subCategoriesId}")
-    public void updateSubCategories(@RequestBody SubCategories subCategories, @PathVariable("subCategoriesId") Long subCategoriesId) {
-        subCategoriesService.updateSubCategories(subCategoriesId, subCategories);
+    @PutMapping()
+    public void updateSubCategories(@RequestBody SubCategories subCategories,@RequestParam(name="subCategoriesId") Long subCategoriesId,@RequestParam(name="Id") Long id) {
+        subCategoriesService.updateSubCategories(subCategoriesId,id, subCategories);
     }
 }

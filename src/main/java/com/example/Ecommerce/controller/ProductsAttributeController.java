@@ -28,8 +28,8 @@ public class  ProductsAttributeController {
     }
 
     @PostMapping("/add")
-    public void registerNewProductAttributes(@RequestParam(name ="id") @PathVariable Long id, @RequestBody ProductsAttributes  productsAttributes) {
-        productsAttributesService.addNewProductsAttributes( id,productsAttributes);
+    public void registerNewProductAttributes( @RequestBody ProductsAttributes  productsAttributes) {
+        productsAttributesService.addNewProductsAttributes(productsAttributes);
     }
 
     @DeleteMapping(path = "{productsAttributesId}")

@@ -36,7 +36,7 @@ public class ProductsAttributesService {
 
         return productsAttributesRepository.findById(productsAttributesId);
     }
-    public void addNewProductsAttributes(Long id,ProductsAttributes productsAttributes) {
+    public void addNewProductsAttributes(ProductsAttributes productsAttributes) {
         productsAttributes.setCreatedAt(new Date());
         productsAttributes.setDeletedAt(new Date());
 

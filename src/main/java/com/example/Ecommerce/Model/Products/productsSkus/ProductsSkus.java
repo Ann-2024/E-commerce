@@ -5,6 +5,7 @@ import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.ProductsAttributes.ProductsAttributes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,17 +33,21 @@ public class ProductsSkus {
     private List<OrderItem>orderItem;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "products_id", nullable = false)
     private Products products;
 
-    private String sizeAttributeId;
-    private String colorAttributeId;
+
 
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "productsAttributes_id", nullable = false)
-    private ProductsAttributes productsAttributes;
+    @JsonIgnoreProperties("productsSkus")
+    @JoinColumn(name = "sizeAttributeId", nullable = false)
+    private ProductsAttributes sizeAttributes;
+
+    @ManyToOne
+    @JsonIgnoreProperties("productsSkus")
+    @JoinColumn(name = "colorAttributeId", nullable = false)
+    private ProductsAttributes colorAttributes;
 
     private String sku;
     private String price;

@@ -32,7 +32,7 @@ public class Categories {
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<SubCategories> subCategories;
 
 }

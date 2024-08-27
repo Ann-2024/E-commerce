@@ -3,7 +3,9 @@ package com.example.Ecommerce.Service;
 import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
+import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.ProductsRepository;
+import com.example.Ecommerce.repository.SellerRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
 import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class ProductsService {
 
     @Autowired
     private ProductsRepository productsRepository;
+    @Autowired
+    private SellerRepository sellerRepository;
 
     @Autowired
     private SubCategoriesRepository subCategoriesRepository;
@@ -30,8 +34,9 @@ public class ProductsService {
     }
 
 
-    public void addNewProducts(Long id, Products products) {
+    public void addNewProducts(Long id,Long sellerId, Products products) {
         SubCategories subCategories = subCategoriesRepository.findById(id).get();
+        Seller seller = sellerRepository.findById(sellerId).get();
         System.out.println("product service");
 
         if (subCategories.equals(null)) {
@@ -40,6 +45,7 @@ public class ProductsService {
             products.setCreatedAt(LocalDateTime.now());
             products.setDeletedAt(LocalDateTime.now());
             products.setSubCategories( subCategories);
+            products.setSeller(seller);
             productsRepository.save(products);
         }
     }

@@ -2,6 +2,7 @@ package com.example.Ecommerce.Model.Seller;
 
 
 import com.example.Ecommerce.Model.Notification.Notification;
+import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -42,6 +43,9 @@ public class Seller {
     private BankDetails bankDetails;
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notification> notification;
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Products> products;
+
 
 
 }

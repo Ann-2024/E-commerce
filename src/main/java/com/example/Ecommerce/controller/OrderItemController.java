@@ -12,6 +12,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/orderItem")
+@CrossOrigin(value="*")
+
 public class  OrderItemController {
     @Autowired
     private OrderItemService orderItemService;

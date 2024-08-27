@@ -6,6 +6,7 @@ import com.example.Ecommerce.Model.Notification.Notification;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,15 +31,15 @@ public class OrderItem{
     @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notification> notification;
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderDetails orderDetails;
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "product_Id", nullable = false)
     private Products products;
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "products_sku_Id", nullable = false)
     private ProductsSkus productsSkus;
 

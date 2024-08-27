@@ -51,6 +51,7 @@ public class OrderItemService {
         boolean exists = orderItemRepository.existsById(orderItemId);
         if (!exists) {
             throw new IllegalStateException("Wishlist with id " + orderItemId + " does not exist");
+
         }
         orderItemRepository.deleteById(orderItemId);
     }

@@ -50,17 +50,22 @@ public class SubCategoriesService {
         subCategoriesRepository.deleteById(subCategoriesId);
     }
 
-    public void updateSubCategories(Long subCategoriesId, SubCategories updatedSubCategories) {
+    public void updateSubCategories(Long subCategoriesId, Long id,SubCategories updatedSubCategories) {
         SubCategories existingSubCategories = subCategoriesRepository.findById(subCategoriesId)
                 .orElseThrow(() -> new IllegalStateException("Address with id " + subCategoriesId + " does not exist"));
-        String name = updatedSubCategories.getName();
-        String description = updatedSubCategories.getDescription();
+        Categories categories = categoriesRepository.findById(id).get();
+        if (categories.equals(null)) {
+            throw new RuntimeException("user not found");
+        } else {
+            String name = updatedSubCategories.getName();
+            String description = updatedSubCategories.getDescription();
+            existingSubCategories.setName(name);
+            existingSubCategories.setDescription(description);
+            existingSubCategories.setCreatedAt(LocalDateTime.now());
+            existingSubCategories.setDeletedAt(LocalDateTime.now());
+            existingSubCategories.setCategories(categories);
 
-        existingSubCategories.setName(name);
-        existingSubCategories.setDescription(description);
-        existingSubCategories.setCreatedAt(LocalDateTime.now());
-        existingSubCategories.setDeletedAt(LocalDateTime.now());
-
-        subCategoriesRepository.save(existingSubCategories);
+            subCategoriesRepository.save(existingSubCategories);
+        }
     }
 }

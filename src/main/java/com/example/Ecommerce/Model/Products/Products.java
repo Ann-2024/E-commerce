@@ -4,6 +4,7 @@ import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
+import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,6 +45,9 @@ public class Products {
     @ManyToOne
     @JoinColumn(name = "subcategories_id", nullable = false)
     private SubCategories subCategories;
+    @ManyToOne
+    @JoinColumn(name = "seller_id", nullable = false)
+    private Seller seller;
 
 //    @ManyToMany
 //    @JoinTable(

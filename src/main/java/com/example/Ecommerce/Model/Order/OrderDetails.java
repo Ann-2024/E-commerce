@@ -2,6 +2,7 @@ package com.example.Ecommerce.Model.Order;
 
 
 import com.example.Ecommerce.Model.Cart.Cart;
+import com.example.Ecommerce.Model.Notification.Notification;
 import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
@@ -14,6 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orderDetails")
@@ -31,7 +33,8 @@ public class OrderDetails {
     @JoinColumn(name = "user_Id", nullable = false)
     private Users users;
 
-
+    @OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderItem> orderItem;
 
 
     private String total;

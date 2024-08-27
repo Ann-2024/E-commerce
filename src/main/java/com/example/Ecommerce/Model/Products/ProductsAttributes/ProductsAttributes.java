@@ -23,9 +23,12 @@ public class ProductsAttributes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "productsAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ProductsSkus> productsSkus;
+    @OneToMany(mappedBy = "sizeAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductsSkus> sizeSkus;
 
+    @OneToMany(mappedBy = "colorAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductsSkus> colorSkus;
+    private String type;
     private String value;
 
     private Date createdAt;

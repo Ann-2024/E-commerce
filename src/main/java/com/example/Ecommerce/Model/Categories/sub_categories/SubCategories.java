@@ -3,6 +3,7 @@ package com.example.Ecommerce.Model.Categories.sub_categories;
 import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,8 @@ public class SubCategories {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonBackReference
+//    @JsonBackReference
+ @JsonIgnoreProperties("subCategories")
     private Categories categories;
 
     private String name;
