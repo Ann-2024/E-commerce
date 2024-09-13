@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/jwt_ecommerce
     username: postgres
-    password: Sqlserver123@
+    password: Johns@1995
   jpa:
     hibernate:
       ddl-auto: update

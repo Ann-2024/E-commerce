@@ -12,6 +12,7 @@ import com.example.Ecommerce.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,15 +34,27 @@ public class CartService {
         return cartRepository.findById(cartId);
     }
 
-    public void addNewCart( Long userId, Cart cart) {
-        Users users = usersRepository.findById(userId).get();
-        System.out.println("Wishlist service");
+    public String addNewCart( Long userId ) {
+        Users users = usersRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("user with id " + userId + " does not exist"));
 
-        cart.setCreatedAt(LocalDateTime.now());
-        cart.setDeletedAt(LocalDateTime.now());
-        cart.setUsers(users);
-        cartRepository.save(cart);
+        Long id = users.getId();
+        Cart cart1 = cartRepository.findByUsersId(id);
 
+        if (cart1 != null) {
+            return "user already added to cart page";
+        } else {
+
+            System.out.println("Wishlist service");
+
+            Cart cart = new Cart();
+
+            cart.setCreatedAt(LocalDateTime.now());
+            cart.setDeletedAt(LocalDateTime.now());
+            cart.setUsers(users);
+            cartRepository.save(cart);
+            return "successfully added";
+        }
     }
     public void deleteCart(Long cartId) {
         boolean exists = cartRepository.existsById(cartId);
@@ -51,11 +64,24 @@ public class CartService {
         cartRepository.deleteById(cartId);
     }
 
-    public void updateCart(Long cartId, Cart updatedCart) {
+    public void updateCart(Long cartId, BigDecimal updatedCart) {
         Cart existingCart= cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalStateException("Product with id " + cartId + " does not exist"));
 
-        String total = updatedCart.getTotal();
+        BigDecimal total = updatedCart;
+
+        existingCart.setTotal(total);
+        existingCart.setCreatedAt(LocalDateTime.now());
+        existingCart.setDeletedAt(LocalDateTime.now());
+
+        cartRepository.save(existingCart);
+    }
+
+    public void updateCartTotal(Long cartId, Cart updatedCart) {
+        Cart existingCart= cartRepository.findById(cartId)
+                .orElseThrow(() -> new IllegalStateException("Product with id " + cartId + " does not exist"));
+
+        BigDecimal total = updatedCart.getTotal();
 
         existingCart.setTotal(total);
         existingCart.setCreatedAt(LocalDateTime.now());

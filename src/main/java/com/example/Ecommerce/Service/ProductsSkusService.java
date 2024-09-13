@@ -37,12 +37,19 @@ public class ProductsSkusService {
         return productsSkusRepository.findById(productsSkusId);
     }
     public void addNewProductsSkus(Long productId,Long sizeAttributesId,Long colorAttributesId,ProductsSkus productsSkus) {
-        Products products = productsRepository.findById(productId).get();
-        ProductsAttributes sizeAttributes  =productsAttributesRepository.findById(sizeAttributesId).get();
-        ProductsAttributes colorAttributes  =productsAttributesRepository.findById(colorAttributesId).get();
+
+        Products products = productsRepository.findById(productId)
+                .orElseThrow(() -> new IllegalStateException("product with the given id is not given" +productId));
+
+        ProductsAttributes sizeAttributes  =productsAttributesRepository.findById(sizeAttributesId)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +sizeAttributesId));
+
+        ProductsAttributes colorAttributes  =productsAttributesRepository.findById(colorAttributesId)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +colorAttributesId));
 
 
-            productsSkus.setCreatedAt(LocalDateTime.now());
+
+        productsSkus.setCreatedAt(LocalDateTime.now());
             productsSkus.setDeletedAt(LocalDateTime.now());
             productsSkus.setProducts(products);
             productsSkus.setSizeAttributes(sizeAttributes);

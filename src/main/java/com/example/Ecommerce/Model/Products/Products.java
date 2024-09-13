@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
@@ -35,17 +36,25 @@ public class Products {
 
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductsSkus> productsSkus;
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlist;
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CartItem>cartItem;
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem>orderItem;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "subcategories_id", nullable = false)
     private SubCategories subCategories;
+
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "seller_id", nullable = false)
     private Seller seller;
 
@@ -59,7 +68,9 @@ public class Products {
     private String summary;
     private String cover;
     private String sku;
-    private String price;
+
+
+    private BigDecimal price;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
