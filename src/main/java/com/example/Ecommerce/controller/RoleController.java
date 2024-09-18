@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/ecommerce/v1")
 @PreAuthorize("hasRole('ADMIN')")
+@CrossOrigin(value="*")
 public class RoleController {
 
     @GetMapping("/admin")

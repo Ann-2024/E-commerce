@@ -37,4 +37,8 @@ public enum Role {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return authorities;
     }
+//    public List<SimpleGrantedAuthority> getAuthorities() {
+//        // Return only the role as a SimpleGrantedAuthority
+//        return List.of(new SimpleGrantedAuthority(this.name()));
+//    }
 }

@@ -1,8 +1,8 @@
 package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
-import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Service.ProductsSkusService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +11,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/productsSkus")
+@CrossOrigin(value="*")
+
 public class  ProductsSkusController {
     @Autowired
     private ProductsSkusService productsSkusService;

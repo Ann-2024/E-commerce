@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Service;
 
 
+import ch.qos.logback.classic.boolex.MarkerList;
 import com.example.Ecommerce.Model.Addresses.Addresses;
 import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.repository.AddressRepository;
@@ -15,17 +16,10 @@ import java.util.Optional;
 @Service
 public class AddressService {
 
-    private final AddressRepository addressRepository;
+    private AddressRepository addressRepository;
 
     @Autowired
     private UsersRepository usersRepository;
-
-    @Autowired
-    public AddressService(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
-
-
     public void addNewAddresses(Long id, Addresses addresses) {
 
         Users users = usersRepository.findById(id).get();
@@ -74,7 +68,7 @@ public class AddressService {
         existingAddress.setAddress_line_2(updatedAddress.getAddress_line_2());
         existingAddress.setCountry(updatedAddress.getCountry());
         existingAddress.setCity(updatedAddress.getCity());
-        existingAddress.setPostalCode(updatedAddress.getPostalCode());
+        existingAddress.setPincode(updatedAddress.getPincode());
         existingAddress.setLandmark(updatedAddress.getLandmark());
         existingAddress.setPhoneNumber(updatedAddress.getPhoneNumber());
         existingAddress.setCreatedAt(new Date());

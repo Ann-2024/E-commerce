@@ -4,6 +4,7 @@ import com.example.Ecommerce.Model.Cart.Cart;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Users.Users;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,7 +41,11 @@ public class CartItem{
 
     private int quantity;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+
+
+
+   
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
 

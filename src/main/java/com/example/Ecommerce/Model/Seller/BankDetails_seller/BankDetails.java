@@ -28,7 +28,6 @@ public class BankDetails {
     private String UpiId;
     @OneToOne
     @JoinColumn(name = "sellerId", referencedColumnName = "id", unique = true)
-    @JsonBackReference
     private Seller seller;
 
 }

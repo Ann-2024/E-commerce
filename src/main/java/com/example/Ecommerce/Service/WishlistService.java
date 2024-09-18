@@ -1,11 +1,9 @@
 package com.example.Ecommerce.Service;
 
-import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.example.Ecommerce.repository.ProductsRepository;
-import com.example.Ecommerce.repository.SubCategoriesRepository;
 import com.example.Ecommerce.repository.UsersRepository;
 import com.example.Ecommerce.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;

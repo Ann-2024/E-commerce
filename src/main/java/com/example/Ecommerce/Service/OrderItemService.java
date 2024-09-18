@@ -8,6 +8,8 @@ import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -69,6 +71,20 @@ public class OrderItemService {
         existingOrderItem.setDeletedAt(LocalDateTime.now());
 
         orderItemRepository.save(existingOrderItem);
+
     }
+    public ResponseEntity<OrderItem> updateOrderItemStatus(Long orderItemId, String status) {
+        Optional<OrderItem> optionalOrderItem = orderItemRepository.findById(orderItemId);
+        if (!optionalOrderItem.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        OrderItem orderItem = optionalOrderItem.get();
+        orderItem.setStatus(status);
+        orderItemRepository.save(orderItem);
+
+        return new ResponseEntity<>(orderItem, HttpStatus.OK);
+    }
+
 }
 

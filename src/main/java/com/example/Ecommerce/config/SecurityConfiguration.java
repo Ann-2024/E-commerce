@@ -36,10 +36,10 @@ public class SecurityConfiguration {
                         req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**","/ecommerce/v1/**","/api/users/**","/api/Address/**","/api/msg/**",
                                         "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
-                                        "/api/productsAttributes/**","/api/cartItem/**",
+                                        "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),
                                         ("/api/paymentDetails/**"),("/api/notification/**"),
-                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**",
+                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**","/api/pincodes/**",
                                         "/api/address/**","/api/seller/**")
                                        
                                 .permitAll()
@@ -56,5 +56,6 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+
     }
 }

@@ -13,6 +13,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/cart")
+@CrossOrigin(value="*")
+
 public class  CartController {
     @Autowired
     private CartService cartService;
@@ -21,6 +23,7 @@ public class  CartController {
     public List<Cart> getCart() {
         return cartService.getCart();
     }
+
     @GetMapping("/getall/{id}")
     public Optional<Cart> getCartBYId(@PathVariable(value = "id") Long cartId) {
         return cartService.getCartBYId(cartId);

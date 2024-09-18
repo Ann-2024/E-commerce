@@ -12,6 +12,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/bankDetail")
+@CrossOrigin(value="*")
+
 public class  BankDetailController {
     @Autowired
     private BankDetailService bankDetailService;
