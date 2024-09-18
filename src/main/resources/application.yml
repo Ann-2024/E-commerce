@@ -18,6 +18,13 @@ spring:
           time_zone: UTC
 
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+twilio:
+      accountSid:
+      authToken:
+      whatsappNumber:
+      phoneNumber:
 logging:
   level:
     org.springframework.security: DEBUG
