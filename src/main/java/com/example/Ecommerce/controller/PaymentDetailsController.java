@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/paymentDetails")
+@CrossOrigin(value="*")
 public class PaymentDetailsController {
     @Autowired
     private PaymentDetailsService paymentDetailsService;

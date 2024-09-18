@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/subCategories")
+@CrossOrigin(value="*")
 public class  SubCategoriesController {
     @Autowired
     private SubCategoriesService subCategoriesService;

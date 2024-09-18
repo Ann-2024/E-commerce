@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/productsAttributes")
+@CrossOrigin(value="*")
 public class  ProductsAttributeController {
     @Autowired
     private ProductsAttributesService productsAttributesService;

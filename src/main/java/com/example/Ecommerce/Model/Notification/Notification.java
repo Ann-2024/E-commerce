@@ -7,7 +7,9 @@ import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Seller.Seller;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +31,7 @@ public class Notification{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "sellerId", nullable = false)
     private Seller seller;
     @ManyToOne

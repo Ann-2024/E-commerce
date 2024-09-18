@@ -1,34 +1,42 @@
 spring:
   application:
     name: Ecommerce
+
   datasource:
     url: jdbc:postgresql://localhost:5432/jwt_ecommerce
     username: postgres
     password: Sqlserver123@
+    driver-class-name: org.postgresql.Driver
+
   jpa:
+    open-in-view: true
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        ddl-auto: update
         format_sql: true
-        show-sql: true
         jdbc:
           time_zone: UTC
 
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-logging:
-  level:
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
-    logging:
-      level:
-        org:
-          springframework=DEBUG:
-                  hibernate:
-                    type:
-                      descriptor:
-                        sql:
-                          BasicBinder=TRACE:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/pincode
 
+
+
+#      spring:
+#        main:
+#          allow-bean-definition-overriding: true
+
+
+
+# Uncomment the following section if you need to allow bean definition overriding
+# main:
+#   allow-bean-definition-overriding: true
+
+# Uncomment the following section if you need to configure logging levels
+# logging:
+#   level:
+#     org.springframework: DEBUG
+#     root: DEBUG

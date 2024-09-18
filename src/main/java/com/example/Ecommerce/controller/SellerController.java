@@ -11,7 +11,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/seller")
-public final class  SellerController {
+@CrossOrigin(value="*")
+
+public  class  SellerController {
     @Autowired
     private SellerService sellerService;
 

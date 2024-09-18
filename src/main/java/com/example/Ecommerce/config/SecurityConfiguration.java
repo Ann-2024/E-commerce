@@ -34,10 +34,10 @@ public class SecurityConfiguration {
                         req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**",
                                         "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
-                                        "/api/productsAttributes/**","/api/cartItem/**",
+                                        "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),
                                         ("/api/paymentDetails/**"),("/api/notification/**"),
-                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**",
+                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**","/api/pincodes/**",
                                         "/api/address/**","/api/seller/**")
                                 .permitAll()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
@@ -53,5 +53,6 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+
     }
 }

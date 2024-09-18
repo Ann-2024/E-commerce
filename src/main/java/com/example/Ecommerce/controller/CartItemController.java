@@ -15,6 +15,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/cartItem")
+@CrossOrigin(value="*")
+
 public class  CartItemController {
     @Autowired
     private CartItemService cartItemService;

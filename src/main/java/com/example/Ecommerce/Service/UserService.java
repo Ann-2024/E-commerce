@@ -3,6 +3,7 @@ package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.Model.user.Role;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.example.Ecommerce.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class UserService {
         if (usersOptional.isPresent()) {
             throw new IllegalStateException("Email taken");
         }
-        users.setCreatedAt(new Date());
+
         users.setPassword(passwordEncoder.encode(users.getPassword()));
 
         usersRepository.save(users);
@@ -64,9 +65,9 @@ public class UserService {
         String avatar = updatedUsers.getAvatar();
         String firstName = updatedUsers.getFirstName();
         String lastName = updatedUsers.getLastName();
-        String username = updatedUsers.getUsername();
         String password = updatedUsers.getPassword();
         String email = updatedUsers.getEmail();
+        Role role = updatedUsers.getRole();
         LocalDate birthofDate = updatedUsers.getBirthOfDate();
         String phoneNumber = updatedUsers.getPhoneNumber();
 
@@ -78,11 +79,11 @@ public class UserService {
         existingUsers.setEmail(email);
         existingUsers.setFirstName(firstName);
         existingUsers.setLastName(lastName);
-        existingUsers.setUsername(username);
         existingUsers.setPassword(passwordEncoder.encode(password));
         existingUsers.setBirthOfDate(birthofDate);
         existingUsers.setPhoneNumber(phoneNumber);
-        existingUsers.setCreatedAt(new Date());
+        existingUsers.setRole(role);
+
 
         usersRepository.save(existingUsers);
     }

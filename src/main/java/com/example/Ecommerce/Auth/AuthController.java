@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Auth;
 
-import com.example.Ecommerce.repository.UserRepository;
+
+import com.example.Ecommerce.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/ecommerce/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin(value="*")
 public class AuthController {
 
     private final AuthService authService;
-    private final UserRepository userRepository;
+    private  UsersRepository usersRepository;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(

@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/wishlist")
+@CrossOrigin(value="*")
 public class  WishlistController {
     @Autowired
     private WishlistService wishlistService;

@@ -8,12 +8,14 @@ import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -27,25 +29,34 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","productsSkus"})
 public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<ProductsSkus> productsSkus;
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlist;
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem>cartItem;
+
+
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem>orderItem;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "subcategories_id", nullable = false)
     private SubCategories subCategories;
+
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "seller_id", nullable = false)
     private Seller seller;
 

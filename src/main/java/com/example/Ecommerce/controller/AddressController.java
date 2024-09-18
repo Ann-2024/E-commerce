@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/address")
-
+@CrossOrigin(value="*")
 public class  AddressController {
     @Autowired
     private AddressService addressService;

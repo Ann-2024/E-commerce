@@ -29,6 +29,7 @@ public class BankDetail {
     private String ifscCode;
     private String UpiId;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "usersId",  referencedColumnName = "id", unique = true,nullable = false)
     private Users users;
 }

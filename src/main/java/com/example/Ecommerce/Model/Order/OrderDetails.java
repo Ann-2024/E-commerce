@@ -28,8 +28,8 @@ public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_Id", nullable = false)
     private Users users;
 
@@ -38,6 +38,7 @@ public class OrderDetails {
 
 
     private String total;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

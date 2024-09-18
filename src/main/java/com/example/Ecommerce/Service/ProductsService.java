@@ -7,6 +7,7 @@ import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.ProductsRepository;
 import com.example.Ecommerce.repository.SellerRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
+import jakarta.transaction.Transactional;
 import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
+@Transactional
+
 public class ProductsService {
 
     @Autowired
