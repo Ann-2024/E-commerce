@@ -38,7 +38,8 @@ public class SubCategories {
     @JsonIgnore
     @JoinColumn(name = "category_id", nullable = false)
 //    @JsonBackReference
-// @JsonIgnoreProperties("subCategories")
+
+    @JsonIgnoreProperties("subCategories")
     private Categories categories;
 
     private String name;

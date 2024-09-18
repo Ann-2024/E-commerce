@@ -6,10 +6,8 @@ import com.example.Ecommerce.Model.Order.OrderDetails;
 import com.example.Ecommerce.Model.Users.BankDetail.BankDetail;
 import com.example.Ecommerce.Model.user.Role;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,7 +59,9 @@ public class  Users implements UserDetails {
 
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Addresses> addresses;
+
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BankDetail> bankDetail;

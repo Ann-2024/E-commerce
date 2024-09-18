@@ -26,7 +26,10 @@ public class  ProductsSkusController {
         return productsSkusService.getProductsSkusBYId(productsSkusId);
     }
     @PostMapping("/add")
-    public void registerNewProductsSkus(@RequestParam(name ="productId") @PathVariable Long productId, @RequestBody ProductsSkus productsSkus,@RequestParam(name ="sizeAttributesId") @PathVariable Long sizeAttributesId,@RequestParam(name ="colorAttributesId") @PathVariable Long colorAttributesId) {
+    public void registerNewProductsSkus(@RequestParam(name ="productId")  Long productId,
+                                        @RequestBody ProductsSkus productsSkus,
+                                        @RequestParam(name ="sizeAttributesId")  Long sizeAttributesId,
+                                        @RequestParam(name ="colorAttributesId")  Long colorAttributesId) {
         productsSkusService.addNewProductsSkus(productId,sizeAttributesId,colorAttributesId,productsSkus);
     }
 

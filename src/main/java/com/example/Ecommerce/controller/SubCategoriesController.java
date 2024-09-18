@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/api/subCategories")
 @CrossOrigin(value="*")
+
 public class  SubCategoriesController {
     @Autowired
     private SubCategoriesService subCategoriesService;
@@ -25,7 +26,7 @@ public class  SubCategoriesController {
         return subCategoriesService.getSubCategoriesBYId(subCategoriesId);
     }
     @PostMapping("/add")
-    public void registerNewSubCategories(@RequestParam(name ="id") @PathVariable Long id, @RequestBody SubCategories  subCategories) {
+    public void registerNewSubCategories(@RequestParam(name ="id")  Long id, @RequestBody SubCategories  subCategories) {
         subCategoriesService.addNewSubCategories(id,subCategories);
     }
 
@@ -35,7 +36,8 @@ public class  SubCategoriesController {
     }
 
     @PutMapping()
-    public void updateSubCategories(@RequestBody SubCategories subCategories,@RequestParam(name="subCategoriesId") Long subCategoriesId,@RequestParam(name="Id") Long id) {
+    public void updateSubCategories(@RequestParam(name="subCategoriesId") Long subCategoriesId,@RequestParam(name="id") Long id
+                                ,@RequestBody SubCategories subCategories) {
         subCategoriesService.updateSubCategories(subCategoriesId,id, subCategories);
     }
 }

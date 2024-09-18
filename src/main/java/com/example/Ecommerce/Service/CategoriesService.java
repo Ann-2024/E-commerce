@@ -7,6 +7,7 @@ import com.example.Ecommerce.repository.BankDetailsRepository;
 import com.example.Ecommerce.repository.CategoriesRepository;
 import com.example.Ecommerce.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class CategoriesService {
 
 
     public List<Categories> getCategories() {
-        return categoriesRepository.findAll();
+        return categoriesRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
     public Optional<Categories> getCategoriesBYId(Long categoriesId) {
 

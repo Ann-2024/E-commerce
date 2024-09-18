@@ -77,4 +77,12 @@ public class AddressService {
     }
 
 
+    public List<Addresses> getAddressesBYUser(Long id) {
+
+    Users user = usersRepository.findById(id)
+            .orElseThrow(()-> new RuntimeException("user with this id "+id+" not present"));
+
+    return addressRepository.findByUsers(user);
+
+    }
 }

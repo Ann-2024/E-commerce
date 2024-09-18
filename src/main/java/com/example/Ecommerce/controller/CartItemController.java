@@ -8,6 +8,7 @@ import com.example.Ecommerce.Service.CartItemService;
 import com.example.Ecommerce.Service.ProductsService;
 import com.example.Ecommerce.Service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,23 @@ public class  CartItemController {
     public List<CartItem> getCartItem() {
         return cartItemService.getCartItem();
     }
+
     @GetMapping("/getall/{id}")
     public Optional<CartItem> getCartItemBYId(@PathVariable(value = "id") Long cartItemId) {
         return cartItemService.getCartItemBYId(cartItemId);
     }
+
+    @GetMapping("/getByUser")
+    public List<CartItem> getCartItemBYUser(@RequestParam(value = "id") Long cartId) {
+        return cartItemService.getCartItemByUser(cartId);
+    }
+
+
     @PostMapping("/add")
-    public void registerCartItem(@RequestParam(name ="cartId") @PathVariable Long cartId,@RequestParam(name ="productsId") @PathVariable Long productsId,@RequestParam(name ="productsSkuId")@PathVariable Long productsSkuId, @RequestBody CartItem cartItem) {
+    public void registerCartItem(@RequestParam(name ="cartId")  Long cartId,
+                                 @RequestParam(name ="productsId") Long productsId,
+                                 @RequestParam(name ="productsSkuId") Long productsSkuId,
+                                 @RequestBody CartItem cartItem) {
         cartItemService.addNewCartItem(cartId,productsId,productsSkuId, cartItem);
     }
 
@@ -43,4 +55,6 @@ public class  CartItemController {
     public void updateCartItem(@RequestBody CartItem cartItem, @PathVariable("cartItemId") Long cartItemId) {
         cartItemService.updateCartItem(cartItemId, cartItem);
     }
+
+
 }

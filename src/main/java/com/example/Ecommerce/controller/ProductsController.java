@@ -27,7 +27,7 @@ public class  ProductsController {
     }
 
     @PostMapping("/add")
-    public void registerNewProducts(@RequestParam(name ="id") @PathVariable Long id,@RequestParam(name ="sellerId") @PathVariable Long sellerId, @RequestBody Products products) {
+    public void registerNewProducts(@RequestParam(name ="id")  Long id,@RequestParam(name ="sellerId")  Long sellerId, @RequestBody Products products) {
         productsService.addNewProducts(id,sellerId,products);
     }
 
@@ -36,8 +36,9 @@ public class  ProductsController {
         productsService.deleteProducts(productsId);
     }
 
-    @PutMapping(path = "{productsId}")
-    public void updateProducts(@RequestBody Products products, @PathVariable("productsId") Long productsId) {
-        productsService.updateProducts(productsId, products);
+    @PutMapping()
+    public void updateProducts(@RequestBody Products products, @RequestParam("productsId") Long productsId
+                                ,@RequestParam("id") Long id) {
+        productsService.updateProducts(productsId,id, products);
     }
 }

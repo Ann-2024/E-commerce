@@ -33,6 +33,7 @@ public class  ProductsAttributeController {
         productsAttributesService.addNewProductsAttributes(productsAttributes);
     }
 
+
     @DeleteMapping(path = "{productsAttributesId}")
     public void deleteProducts(@PathVariable("productsAttributesId") Long productsAttributesId) {
         productsAttributesService.deleteProductsAttributes(productsAttributesId);

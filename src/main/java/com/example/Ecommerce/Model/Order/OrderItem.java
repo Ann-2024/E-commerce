@@ -35,25 +35,26 @@ public class OrderItem{
     @JsonIgnore
     private List<Notification> notification;
 
+
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderDetails orderDetails;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "product_Id", nullable = false)
     private Products products;
 
+
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties
     @JoinColumn(name = "products_sku_Id", nullable = false)
     private ProductsSkus productsSkus;
 
 
-
-
     private String quantity;
+
     @Column(name = "status", columnDefinition = "VARCHAR(255) DEFAULT 'pending'")
     private String status;
 

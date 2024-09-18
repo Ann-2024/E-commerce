@@ -30,10 +30,12 @@ public class ProductsSkus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(mappedBy = "productsSkus", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CartItem>cartItem;
 
-
+ 
     @OneToMany(mappedBy = "productsSkus", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem>orderItem;
 
@@ -45,14 +47,13 @@ public class ProductsSkus {
 
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "sizeAttributeId", nullable = false)
     private ProductsAttributes sizeAttributes;
 
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "colorAttributeId", nullable = false)
+   @JoinColumn(name = "colorAttributeId", nullable = false)
     private ProductsAttributes colorAttributes;
+  
     private String sku;
     private String price;
     private String quantity;

@@ -24,13 +24,18 @@ public class ProductsAttributes {
     private Long id;
 
     @OneToMany(mappedBy = "sizeAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ProductsSkus> sizeSkus;
 
     @OneToMany(mappedBy = "colorAttributes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ProductsSkus> colorSkus;
+
     private String type;
+
     private String value;
 
     private Date createdAt;
+
     private Date deletedAt;
 }

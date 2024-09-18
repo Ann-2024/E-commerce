@@ -24,9 +24,9 @@ public class Addresses{
     private Long id;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "userId", nullable = false)
     private Users users;
+
     private String title;
     private String address_line_1;
     private String address_line_2;
