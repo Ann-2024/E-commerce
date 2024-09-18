@@ -8,7 +8,9 @@ public class EcommerceApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(EcommerceApplication.class, args);
+		SpringApplication app= new SpringApplication(EcommerceApplication.class);
+		app.setAdditionalProfiles("debug");
+		app.run(args);
 	}
 
 }

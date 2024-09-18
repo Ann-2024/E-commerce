@@ -2,17 +2,21 @@ spring:
   application:
     name: Ecommerce
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5432/jwt_ecommerce
+    url: jdbc:postgresql://localhost:5432/jwt_ecommerce
     username: postgres
-    password: Johns@1995
+    password: Sqlserver123@
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
+        ddl-auto: update
         format_sql: true
         show-sql: true
+        jdbc:
+          time_zone: UTC
+
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
@@ -25,3 +29,13 @@ logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
+    logging:
+      level:
+        org:
+          springframework=DEBUG:
+                  hibernate:
+                    type:
+                      descriptor:
+                        sql:
+                          BasicBinder=TRACE:
+
