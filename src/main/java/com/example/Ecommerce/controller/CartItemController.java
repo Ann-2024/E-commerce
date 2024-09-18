@@ -26,6 +26,7 @@ public class  CartItemController {
     public List<CartItem> getCartItem() {
         return cartItemService.getCartItem();
     }
+
     @GetMapping("/getall/{id}")
     public Optional<CartItem> getCartItemBYId(@PathVariable(value = "id") Long cartItemId) {
         return cartItemService.getCartItemBYId(cartItemId);
