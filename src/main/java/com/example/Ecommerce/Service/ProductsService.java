@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
+import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.Seller;
@@ -9,8 +10,10 @@ import com.example.Ecommerce.repository.SellerRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
 import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -26,7 +29,7 @@ public class ProductsService {
     private SubCategoriesRepository subCategoriesRepository;
 
     public List<Products> getProducts() {
-        return productsRepository.findAll();
+        return productsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
     public Optional<Products> getProductsBYId(Long productsId) {
 
@@ -58,15 +61,21 @@ public class ProductsService {
         productsRepository.deleteById(productsId);
     }
 
-    public void updateProducts(Long productsId, Products updatedProducts) {
+    public void updateProducts(Long productsId,Long id, Products updatedProducts) {
+
         Products existingProducts = productsRepository.findById(productsId)
                 .orElseThrow(() -> new IllegalStateException("Product with id " + productsId + " does not exist"));
+
+        SubCategories subCategories1 = subCategoriesRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +id));
+
+
         String name = updatedProducts.getName();
         String description = updatedProducts.getDescription();
         String summary = updatedProducts.getSummary();
         String cover = updatedProducts.getCover();
         String sku = updatedProducts.getSku();
-        String price = updatedProducts.getPrice();
+        BigDecimal price = updatedProducts.getPrice();
 
         existingProducts.setName(name);
         existingProducts.setDescription(description);
@@ -74,6 +83,7 @@ public class ProductsService {
         existingProducts.setCover(cover);
         existingProducts.setSku(sku);
         existingProducts.setPrice(price);
+        existingProducts.setSubCategories(subCategories1);
         existingProducts.setCreatedAt(LocalDateTime.now());
         existingProducts.setDeletedAt(LocalDateTime.now());
 

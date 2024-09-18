@@ -27,8 +27,8 @@ public class  CartController {
     }
 
     @PostMapping("/add")
-    public void registerNewCart(@RequestParam(name ="userId")@PathVariable Long userId, @RequestBody Cart cart) {
-        cartService.addNewCart(userId, cart);
+    public String registerNewCart(@RequestParam(name ="userId") Long userId) {
+     return    cartService.addNewCart(userId);
     }
 
     @DeleteMapping(path = "{cartId}")
@@ -37,7 +37,7 @@ public class  CartController {
     }
 
     @PutMapping(path = "{cartId}")
-    public void updateCart(@RequestBody Cart cart, @PathVariable("cartId") Long cartId) {
-        cartService.updateCart(cartId, cart);
+    public void updateCartTotal(@RequestBody Cart cart, @PathVariable("cartId") Long cartId) {
+        cartService.updateCartTotal(cartId, cart);
     }
 }

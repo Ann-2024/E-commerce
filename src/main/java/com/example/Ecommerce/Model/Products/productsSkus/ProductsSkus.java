@@ -27,25 +27,26 @@ public class ProductsSkus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(mappedBy = "productsSkus", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CartItem>cartItem;
+
     @OneToMany(mappedBy = "productsSkus", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem>orderItem;
 
     @ManyToOne
-    @JsonIgnoreProperties
+    @JsonIgnore
     @JoinColumn(name = "products_id", nullable = false)
     private Products products;
 
 
 
     @ManyToOne
-    @JsonIgnoreProperties("productsSkus")
     @JoinColumn(name = "sizeAttributeId", nullable = false)
     private ProductsAttributes sizeAttributes;
 
     @ManyToOne
-    @JsonIgnoreProperties("productsSkus")
     @JoinColumn(name = "colorAttributeId", nullable = false)
     private ProductsAttributes colorAttributes;
 

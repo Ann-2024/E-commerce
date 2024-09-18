@@ -10,6 +10,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/address")
+@CrossOrigin(value="*")
+
 
 public class  AddressController {
     @Autowired
@@ -31,6 +33,11 @@ public class  AddressController {
     @GetMapping("/getall/{id}")
     public Optional<Addresses> getAddressesBYId(@PathVariable(value = "id") Long addressId) {
         return addressService.getAddressesBYId(addressId);
+    }
+
+    @GetMapping("/getByUser")
+    public List<Addresses> getAddressesBYUser(@RequestParam(value = "userId") Long id) {
+        return addressService.getAddressesBYUser(id);
     }
 
     @DeleteMapping(path = "{addressId}")

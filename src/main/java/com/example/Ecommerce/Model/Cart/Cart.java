@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,17 +26,20 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CartItem>cartItem;
+
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "userId", nullable = false)
     private Users users;
 
 
+    private BigDecimal total = BigDecimal.ZERO;  // Set default value to zero
 
-
-    private String total;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

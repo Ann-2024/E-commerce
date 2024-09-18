@@ -30,24 +30,30 @@ public class OrderItem{
     private Long id;
     @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Notification> notification;
+
+
     @ManyToOne
     @JsonIgnoreProperties
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderDetails orderDetails;
+
+
     @ManyToOne
     @JsonIgnoreProperties
     @JoinColumn(name = "product_Id", nullable = false)
     private Products products;
+
+
     @ManyToOne
     @JsonIgnoreProperties
     @JoinColumn(name = "products_sku_Id", nullable = false)
     private ProductsSkus productsSkus;
 
 
-
-
     private String quantity;
+
     private String status;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

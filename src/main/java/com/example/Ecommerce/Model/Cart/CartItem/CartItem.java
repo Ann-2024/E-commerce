@@ -24,25 +24,25 @@ public class CartItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "cartId", nullable = false)
     private Cart cart;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "product_Id", nullable = false)
     private Products products;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "products_sku_Id", nullable = false)
     private ProductsSkus productsSkus;
 
+    private int quantity;
 
-
-
-    private String quantity;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;

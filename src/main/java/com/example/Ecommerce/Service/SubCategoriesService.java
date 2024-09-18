@@ -6,6 +6,7 @@ import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.repository.CategoriesRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class SubCategoriesService {
     }
 
     public List<SubCategories> getSubCategories() {
-        return subCategoriesRepository.findAll();
+        return subCategoriesRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
     public Optional<SubCategories> getSubCategoriesBYId(Long subCategoriesId) {
 
@@ -50,22 +51,25 @@ public class SubCategoriesService {
         subCategoriesRepository.deleteById(subCategoriesId);
     }
 
-    public void updateSubCategories(Long subCategoriesId, Long id,SubCategories updatedSubCategories) {
+    public void updateSubCategories(Long subCategoriesId,Long id,SubCategories updatedSubCategories) {
+
         SubCategories existingSubCategories = subCategoriesRepository.findById(subCategoriesId)
                 .orElseThrow(() -> new IllegalStateException("Address with id " + subCategoriesId + " does not exist"));
-        Categories categories = categoriesRepository.findById(id).get();
-        if (categories.equals(null)) {
-            throw new RuntimeException("user not found");
-        } else {
+
+        Categories categories1 = categoriesRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +id));
+
+//        System.out.println(categories1);
+
             String name = updatedSubCategories.getName();
             String description = updatedSubCategories.getDescription();
             existingSubCategories.setName(name);
             existingSubCategories.setDescription(description);
             existingSubCategories.setCreatedAt(LocalDateTime.now());
             existingSubCategories.setDeletedAt(LocalDateTime.now());
-            existingSubCategories.setCategories(categories);
+            existingSubCategories.setCategories(categories1);
 
             subCategoriesRepository.save(existingSubCategories);
         }
     }
-}
+

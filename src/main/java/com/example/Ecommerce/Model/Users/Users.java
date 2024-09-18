@@ -5,6 +5,7 @@ import com.example.Ecommerce.Model.Cart.Cart;
 import com.example.Ecommerce.Model.Order.OrderDetails;
 import com.example.Ecommerce.Model.Users.BankDetail.BankDetail;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,10 +28,13 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlist;
+
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cart> cart;
+
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetails>orderDetails;
 
@@ -45,7 +49,10 @@ public class Users {
     private String password;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Addresses> addresses;
+
+
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BankDetail> bankDetail;
 
