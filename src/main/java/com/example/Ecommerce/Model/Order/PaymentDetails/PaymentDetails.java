@@ -6,7 +6,9 @@ import com.example.Ecommerce.Model.Order.OrderDetails;
 import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
+import com.example.Ecommerce.razorpay.PaymentDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.razorpay.Payment;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
@@ -34,7 +36,10 @@ public class PaymentDetails {
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderItem orderItem;
 
-
+    private String PaymentLink;
+    @Enumerated(EnumType.STRING)
+    @OneToMany(mappedBy = "paymentDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PaymentDetail> paymentDetail;
 
     private String amount;
     private String provider;

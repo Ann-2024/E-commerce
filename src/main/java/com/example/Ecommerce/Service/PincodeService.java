@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Addresses.Pincode;
+import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
 import com.example.Ecommerce.repository.PincodeRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,7 @@ public class PincodeService {
     private PincodeRepository pincodeRepository;
 
     private List<Pincode> availablePincodes;
+
 
     public PincodeService() {
         loadPincodesFromJson();
@@ -41,6 +44,13 @@ public class PincodeService {
         }
 
 
+    }
+    public List<Pincode> getPincode() {
+        List<Pincode> pincodes = new ArrayList<>(pincodeRepository.findAll());
+        if (availablePincodes != null) {
+            pincodes.addAll(availablePincodes);
+        }
+        return pincodes;
     }
 
     public String isPincodeAvailableForDelivery(String pincode) {

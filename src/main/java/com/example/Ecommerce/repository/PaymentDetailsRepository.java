@@ -11,5 +11,5 @@ import java.util.Optional;
 @EnableJpaRepositories(basePackages = "com.example.Ecommerce.repository.jpa")
 public interface PaymentDetailsRepository extends JpaRepository<PaymentDetails,Long> {
     @Query("SELECT s FROM PaymentDetails  s WHERE s.id =?1 ")
-    Optional<PaymentDetails> findById(String id);
+    Optional<PaymentDetails> findById(Long Id);
 }

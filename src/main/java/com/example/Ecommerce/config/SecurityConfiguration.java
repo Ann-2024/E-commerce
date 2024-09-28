@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                                         "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
                                         "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
-                                        ("/api/orderItem/**"),("/api/orderDetails/**"),
+                                        ("/api/orderItem/**"),("/api/orderDetails/**"),("/api/payment/**"),
                                         ("/api/paymentDetails/**"),("/api/notification/**"),
                                         "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**","/api/pincodes/**",
                                         "/api/address/**","/api/seller/**")

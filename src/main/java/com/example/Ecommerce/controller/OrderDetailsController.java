@@ -22,6 +22,7 @@ public class  OrderDetailsController {
     public List<OrderDetails> getOrderDetails() {
         return orderDetailsService.getOrderDetails();
     }
+
     @GetMapping("/getall/{id}")
     public Optional<OrderDetails> getOrderDetailsBYId(@PathVariable(value = "id") Long orderDetailsId) {
         return orderDetailsService.getOrderDetailsBYId(orderDetailsId);
@@ -41,4 +42,5 @@ public class  OrderDetailsController {
     public void updateOrderDetails(@RequestBody OrderDetails orderDetails, @PathVariable("orderDetailsId") Long orderDetailsId) {
         orderDetailsService.updateOrderDetails(orderDetailsId, orderDetails);
     }
+
 }

@@ -52,6 +52,7 @@ public class Products {
 
 
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<OrderItem>orderItem;
 
 

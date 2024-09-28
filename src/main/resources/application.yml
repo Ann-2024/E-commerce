@@ -5,9 +5,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/jwt_ecommerce
     username: postgres
-    password: 
+    password: Sqlserver123@
     driver-class-name: org.postgresql.Driver
-
 
   jpa:
     open-in-view: true
@@ -20,47 +19,33 @@ spring:
         jdbc:
           time_zone: UTC
 
-
   data:
     mongodb:
       uri: mongodb://localhost:27017/pincode
 
+  # Uncomment if you need to allow bean definition overriding
+  # main:
+  #   allow-bean-definition-overriding: true
 
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-#      spring:
-#        main:
-#          allow-bean-definition-overriding: true
-
-
-
-# Uncomment the following section if you need to allow bean definition overriding
-# main:
-#   allow-bean-definition-overriding: true
-
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
+razorpay:
+  key: rzp_test_cWF3MY4jPZmK8Z
+  secret: gW79NCDroicKdyDE7RhEl9g4v
 
 twilio:
-      accountSid:
-      authToken:
-      whatsappNumber:
-      phoneNumber:
+  accountSid:
+  authToken:
+  whatsappNumber:
+  phoneNumber:
+
 logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
-    logging:
-      level:
-        org:
-          springframework=DEBUG:
-                  hibernate:
-                    type:
-                      descriptor:
-                        sql:
-                          BasicBinder=TRACE:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
-
-# Uncomment the following section if you need to configure logging levels
+# Uncomment to configure logging levels
 # logging:
 #   level:
 #     org.springframework: DEBUG
