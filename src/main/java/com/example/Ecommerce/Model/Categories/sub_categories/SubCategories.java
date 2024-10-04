@@ -35,11 +35,8 @@ public class SubCategories {
 
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "category_id", nullable = false)
 //    @JsonBackReference
-
-    @JsonIgnoreProperties("subCategories")
     private Categories categories;
 
     private String name;

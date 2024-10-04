@@ -4,6 +4,7 @@ package com.example.Ecommerce.config;
 import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.repository.UsersRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -66,5 +67,7 @@ public class ApplicationConfig {
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(new Jdk8Module());
+
         return objectMapper;    }
 }

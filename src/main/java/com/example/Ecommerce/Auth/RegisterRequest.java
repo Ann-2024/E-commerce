@@ -4,6 +4,7 @@ package com.example.Ecommerce.Auth;
 
 
 import com.example.Ecommerce.Model.user.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RegisterRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
