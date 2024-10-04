@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.util.List;
 import java.util.Optional;
 
-@EnableJpaRepositories(basePackages = "com.example.Ecommerce.repository.jpa")
 public interface AddressRepository extends JpaRepository<Addresses,Long> {
   
   @Query("SELECT s FROM Addresses  s WHERE s.id =?1 ")

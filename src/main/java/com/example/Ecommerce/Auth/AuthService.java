@@ -16,6 +16,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+
     private final UsersRepository usersRepository;
     private  final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
@@ -45,6 +46,7 @@ public class AuthService {
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
+        System.out.println("jwt token generation" );
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -52,8 +54,13 @@ public class AuthService {
                         request.getPassword()
                 )
         );
+        System.out.println("jwt token generation" + request.getEmail() );
+
         var users = usersRepository.findByEmail(request.getEmail())
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("Address with id " + request.getEmail() + " does not exist"));
+
+        System.out.println(users);
+        System.out.println(users);
         String jwtToken = jwtService.generateToken(users);
         return AuthenticationResponse.builder().accessToken(jwtToken).build();
 
