@@ -35,6 +35,7 @@ public class CartItemService {
     public List<CartItem> getCartItem() {
         return cartItemRepository.findAll();
     }
+
     public Optional<CartItem> getCartItemBYId(Long cartItemId) {
 
         return cartItemRepository.findById(cartItemId);
@@ -46,6 +47,9 @@ public class CartItemService {
     }
 
     public void addNewCartItem(Long cartId,Long productsId,Long productsSkuId, CartItem cartItem) {
+
+
+
         Cart cart = cartRepository.findById(cartId).get();
         Products products = productsRepository.findById(productsId).get();
         ProductsSkus productsSkus = productsSkusRepository.findById(productsSkuId).get();
@@ -59,7 +63,7 @@ public class CartItemService {
 
         System.out.println(productQuantityPrice);
 
-         BigDecimal totalAmount = Amount.add(productQuantityPrice);
+        BigDecimal totalAmount = Amount.add(productQuantityPrice);
 
          cartService.updateCart( cartId,  totalAmount);
 

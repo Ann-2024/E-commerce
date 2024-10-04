@@ -8,11 +8,10 @@ import com.example.Ecommerce.Model.user.Role;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,17 +28,20 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
+
 public class  Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlist;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude // Prevents infinite recursion in the toString method
     private List<Cart> cart;
 
     @JsonIgnore
@@ -53,13 +55,18 @@ public class  Users implements UserDetails {
     private String email;
     private LocalDate birthOfDate;
     private String phoneNumber;
+    @Getter
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     @Enumerated(EnumType.STRING)
     private Role role;
 
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude // Prevents infinite recursion in the toString method
     private List<Addresses> addresses;
 
 
@@ -67,35 +74,38 @@ public class  Users implements UserDetails {
     private List<BankDetail> bankDetail;
 
 
-    public String getPassword() {
-        return password;
-    }
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return email;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

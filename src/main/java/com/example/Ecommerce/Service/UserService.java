@@ -89,6 +89,9 @@ public class UserService {
     }
 
 
+    public Optional<Users> getUsersEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
 }
 
 
