@@ -20,6 +20,7 @@ public class AuthController {
             @RequestBody RegisterRequest registerRequest
     ) throws EmailAlreadyExistsException {
         AuthenticationResponse authResponse = authService.register(registerRequest);
+
         return ResponseEntity.ok(new AuthenticationResponse("success"));
 
     }

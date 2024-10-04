@@ -37,18 +37,18 @@ public class OrderItem{
 
 
     @ManyToOne
-    @JsonIgnoreProperties
+    @JsonIgnore
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderDetails orderDetails;
 
     @ManyToOne
-    @JsonIgnoreProperties
+    @JsonIgnore
     @JoinColumn(name = "product_Id", nullable = false)
     private Products products;
 
 
     @ManyToOne
-    @JsonIgnoreProperties
+    @JsonIgnore
     @JoinColumn(name = "products_sku_Id", nullable = false)
     private ProductsSkus productsSkus;
 
@@ -65,6 +65,9 @@ public class OrderItem{
     private LocalDateTime deletedAt;
 
 
+    public Object getAmount() {
+        return null;
+    }
 }
 
 

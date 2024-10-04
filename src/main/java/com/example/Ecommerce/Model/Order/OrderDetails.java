@@ -7,7 +7,9 @@ import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.razorpay.PaymentDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.razorpay.Payment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +37,10 @@ public class OrderDetails {
 
     @OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> orderItem;
+    @OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PaymentDetail> paymentDetail;
+
+
 
 
     private String total;

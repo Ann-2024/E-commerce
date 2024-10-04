@@ -32,6 +32,7 @@ public class ProductPincodesController {
     @PostMapping("/add/{productId}")
     public ResponseEntity<String> addPincodes(@PathVariable Long productId, @RequestBody List<PincodeDetails> pincodeDetailsList) {
         try {
+            System.out.print("hello pincode controller");
             productPincodesService.addPincodesToProduct(productId, pincodeDetailsList);
             return ResponseEntity.ok("Pincodes added successfully to product " + productId);
         } catch (Exception e) {
