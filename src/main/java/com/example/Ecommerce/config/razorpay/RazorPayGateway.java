@@ -1,6 +1,7 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.config.razorpay;
 
-import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
+import com.example.Ecommerce.Model.razorpay.PaymentLinkRequestDto;
+import com.example.Ecommerce.repository.PaymentGateway;
 import com.razorpay.Payment;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;

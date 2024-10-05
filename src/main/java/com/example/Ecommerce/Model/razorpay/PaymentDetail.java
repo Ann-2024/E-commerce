@@ -1,8 +1,8 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.Model.razorpay;
 
 import com.example.Ecommerce.Model.Order.OrderDetails;
-import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
+import com.example.Ecommerce.config.razorpay.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;

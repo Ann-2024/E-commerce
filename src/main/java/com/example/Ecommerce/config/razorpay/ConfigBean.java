@@ -1,4 +1,4 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.config.razorpay;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 import org.springframework.beans.factory.annotation.Value;
