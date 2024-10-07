@@ -30,17 +30,18 @@ public class SubCategoriesService {
 
         return subCategoriesRepository.findById(subCategoriesId);
     }
-    public void addNewSubCategories(Long id,SubCategories subCategories) {
-        Categories categories = categoriesRepository.findById(id).get();
-        if (categories.equals(null)) {
-            throw new RuntimeException("user not found");
-        } else {
-            subCategories.setCreatedAt(LocalDateTime.now());
-            subCategories.setDeletedAt(LocalDateTime.now());
-            subCategories.setCategories(categories);
-            subCategoriesRepository.save(subCategories);
+    public void addNewSubCategories(Long id, List<SubCategories> subCategoriesList) {
+        Categories categories = categoriesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        for (SubCategories subCategory : subCategoriesList) {
+            subCategory.setCreatedAt(LocalDateTime.now());
+            subCategory.setDeletedAt(LocalDateTime.now());
+            subCategory.setCategories(categories);
+            subCategoriesRepository.save(subCategory);
         }
     }
+
 
     public void deleteSubCategories(Long subCategoriesId) {
         boolean exists = subCategoriesRepository.existsById(subCategoriesId);

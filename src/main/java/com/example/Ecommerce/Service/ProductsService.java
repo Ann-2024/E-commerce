@@ -40,21 +40,23 @@ public class ProductsService {
     }
 
 
-    public void addNewProducts(Long id,Long sellerId, Products products) {
-        SubCategories subCategories = subCategoriesRepository.findById(id).get();
-        Seller seller = sellerRepository.findById(sellerId).get();
-        System.out.println("product service");
+    public void addNewProducts(Long id, Long sellerId, List<Products> productsList) {
+        SubCategories subCategories = subCategoriesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Subcategory not found"));
+        Seller seller = sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("Seller not found"));
 
-        if (subCategories.equals(null)) {
-            throw new RuntimeException("user not found");
-        } else {
+        System.out.println("Adding products");
+
+        for (Products products : productsList) {
             products.setCreatedAt(LocalDateTime.now());
             products.setDeletedAt(LocalDateTime.now());
-            products.setSubCategories( subCategories);
+            products.setSubCategories(subCategories);
             products.setSeller(seller);
             productsRepository.save(products);
         }
     }
+
 
     public void deleteProducts(Long productsId) {
         boolean exists = productsRepository.existsById(productsId);

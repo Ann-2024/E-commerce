@@ -27,8 +27,10 @@ public class  ProductsController {
     }
 
     @PostMapping("/add")
-    public void registerNewProducts(@RequestParam(name ="id")  Long id,@RequestParam(name ="sellerId")  Long sellerId, @RequestBody Products products) {
-        productsService.addNewProducts(id,sellerId,products);
+    public void registerNewProducts(@RequestParam(name = "id") Long id,
+                                    @RequestParam(name = "sellerId") Long sellerId,
+                                    @RequestBody List<Products> productsList) {
+        productsService.addNewProducts(id, sellerId, productsList);
     }
 
     @DeleteMapping(path = "{productsId}")

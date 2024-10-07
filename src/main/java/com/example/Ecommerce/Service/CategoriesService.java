@@ -35,13 +35,15 @@ public class CategoriesService {
 
         return categoriesRepository.findById(categoriesId);
     }
-    public void addNewCategories(Categories categories) {
+    public void addNewCategories(List<Categories> categoriess) {
+        LocalDateTime now = LocalDateTime.now();
 
-        categories.setCreatedAt(LocalDateTime.now());
-        categories.setDeletedAt(LocalDateTime.now());
-        categoriesRepository.save(categories);
+        for (Categories categories : categoriess) {
+            categories.setCreatedAt(now);
+            categories.setDeletedAt(now);
+            categoriesRepository.save(categories);
+        }
     }
-
     public void deleteCategories(Long categoriesId) {
         boolean exists = categoriesRepository.existsById(categoriesId);
         if (!exists) {

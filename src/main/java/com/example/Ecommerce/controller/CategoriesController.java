@@ -25,9 +25,10 @@ public class  CategoriesController {
         return categoriesService.getCategoriesBYId(categoriesId);
     }
     @PostMapping("/add")
-    public void registerNewCategories(@RequestBody Categories categories) {
-        categoriesService.addNewCategories(categories);
+    public void registerNewCategories(@RequestBody List<Categories> categoriess) {
+        categoriesService.addNewCategories(categoriess);
     }
+
 
     @DeleteMapping(path = "{categoriesId}")
     public void deleteCategories(@PathVariable("categoriesId") Long addressId) {

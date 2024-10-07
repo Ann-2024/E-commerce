@@ -45,33 +45,34 @@ public class CartItemService {
         return cartItemRepository.findByCartId(cartId);
     }
 
-    public void addNewCartItem(Long cartId,Long productsId,Long productsSkuId, CartItem cartItem) {
-        Cart cart = cartRepository.findById(cartId).get();
-        Products products = productsRepository.findById(productsId).get();
-        ProductsSkus productsSkus = productsSkusRepository.findById(productsSkuId).get();
-        System.out.println("Wishlist service");
+    public void addNewCartItems(Long cartId, Long productsId, Long productsSkuId, List<CartItem> cartItems) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
+        Products products = productsRepository.findById(productsId).orElseThrow(() -> new RuntimeException("Product not found"));
+        ProductsSkus productsSkus = productsSkusRepository.findById(productsSkuId).orElseThrow(() -> new RuntimeException("Product SKU not found"));
 
-        BigDecimal proPrice = products.getPrice();
+        BigDecimal totalAmount = cart.getTotal();
 
-        BigDecimal Amount = cart.getTotal();
+        for (CartItem cartItem : cartItems) {
+            BigDecimal proPrice = products.getPrice();
+            BigDecimal productQuantityPrice = proPrice.multiply(BigDecimal.valueOf(cartItem.getQuantity()));
 
-        BigDecimal productQuantityPrice = proPrice.multiply(BigDecimal.valueOf(cartItem.getQuantity()));
+            // Add the price for each item to the total cart amount
+            totalAmount = totalAmount.add(productQuantityPrice);
 
-        System.out.println(productQuantityPrice);
+            // Set details for each cart item
+            cartItem.setCreatedAt(LocalDateTime.now());
+            cartItem.setDeletedAt(LocalDateTime.now());
+            cartItem.setCart(cart);
+            cartItem.setProducts(products);
+            cartItem.setProductsSkus(productsSkus);
 
-         BigDecimal totalAmount = Amount.add(productQuantityPrice);
+            cartItemRepository.save(cartItem);
+        }
 
-         cartService.updateCart( cartId,  totalAmount);
+        // Update the cart total with the accumulated total amount
+        cartService.updateCart(cartId, totalAmount);
 
-
-        System.out.println("total amount for this user is "+totalAmount);
-        cartItem.setCreatedAt(LocalDateTime.now());
-        cartItem.setDeletedAt(LocalDateTime.now());
-        cartItem.setCart(cart);
-        cartItem.setProducts(products);
-        cartItem.setProductsSkus(productsSkus);
-        cartItemRepository.save(cartItem);
-
+        System.out.println("Total amount for this cart is " + totalAmount);
     }
 
     public void deleteCartItem(Long cartItemId) {
