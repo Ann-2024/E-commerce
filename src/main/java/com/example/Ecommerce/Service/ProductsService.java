@@ -1,7 +1,5 @@
 package com.example.Ecommerce.Service;
 
-import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
-import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.Seller;
@@ -9,7 +7,6 @@ import com.example.Ecommerce.repository.ProductsRepository;
 import com.example.Ecommerce.repository.SellerRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
 import jakarta.transaction.Transactional;
-import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -40,18 +37,20 @@ public class ProductsService {
     }
 
 
-    public void addNewProducts(Long id, Long sellerId, List<Products> productsList) {
-        SubCategories subCategories = subCategoriesRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Subcategory not found"));
+    public void addNewProducts(Long subCategoriesId, Long sellerId, List<Products> productsList) {
+
         Seller seller = sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("Seller not found"));
+        SubCategories subCategoriess = subCategoriesRepository.findById(subCategoriesId)
                 .orElseThrow(() -> new RuntimeException("Seller not found"));
 
         System.out.println("Adding products");
 
         for (Products products : productsList) {
+
             products.setCreatedAt(LocalDateTime.now());
             products.setDeletedAt(LocalDateTime.now());
-            products.setSubCategories(subCategories);
+            products.setSubCategories(subCategoriess);
             products.setSeller(seller);
             productsRepository.save(products);
         }

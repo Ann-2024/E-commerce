@@ -1,5 +1,6 @@
 package com.example.Ecommerce.controller;
 
+import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Service.ProductsService;
@@ -27,10 +28,11 @@ public class  ProductsController {
     }
 
     @PostMapping("/add")
-    public void registerNewProducts(@RequestParam(name = "id") Long id,
+    public void registerNewProducts(
                                     @RequestParam(name = "sellerId") Long sellerId,
+                                    @RequestParam(name ="subcategoriesId") Long subCategoriesId,
                                     @RequestBody List<Products> productsList) {
-        productsService.addNewProducts(id, sellerId, productsList);
+        productsService.addNewProducts(subCategoriesId, sellerId, productsList);
     }
 
     @DeleteMapping(path = "{productsId}")
