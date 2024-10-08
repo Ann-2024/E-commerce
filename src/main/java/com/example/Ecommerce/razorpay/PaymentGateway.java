@@ -1,7 +1,5 @@
-package com.example.Ecommerce.repository;
+package com.example.Ecommerce.razorpay;
 
-import com.example.Ecommerce.config.razorpay.PaymentStatus;
-import com.example.Ecommerce.Model.razorpay.PaymentLinkRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component

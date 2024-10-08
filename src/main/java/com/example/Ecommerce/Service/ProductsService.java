@@ -1,5 +1,7 @@
 package com.example.Ecommerce.Service;
 
+import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
+import com.example.Ecommerce.Model.Categories.Categories;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.Seller;
@@ -7,6 +9,7 @@ import com.example.Ecommerce.repository.ProductsRepository;
 import com.example.Ecommerce.repository.SellerRepository;
 import com.example.Ecommerce.repository.SubCategoriesRepository;
 import jakarta.transaction.Transactional;
+import org.hibernate.grammars.hql.HqlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -37,25 +40,21 @@ public class ProductsService {
     }
 
 
-    public void addNewProducts(Long subCategoriesId, Long sellerId, List<Products> productsList) {
+    public void addNewProducts(Long id,Long sellerId, Products products) {
+        SubCategories subCategories = subCategoriesRepository.findById(id).get();
+        Seller seller = sellerRepository.findById(sellerId).get();
+        System.out.println("product service");
 
-        Seller seller = sellerRepository.findById(sellerId)
-                .orElseThrow(() -> new RuntimeException("Seller not found"));
-        SubCategories subCategoriess = subCategoriesRepository.findById(subCategoriesId)
-                .orElseThrow(() -> new RuntimeException("Seller not found"));
-
-        System.out.println("Adding products");
-
-        for (Products products : productsList) {
-
+        if (subCategories.equals(null)) {
+            throw new RuntimeException("user not found");
+        } else {
             products.setCreatedAt(LocalDateTime.now());
             products.setDeletedAt(LocalDateTime.now());
-            products.setSubCategories(subCategoriess);
+            products.setSubCategories( subCategories);
             products.setSeller(seller);
             productsRepository.save(products);
         }
     }
-
 
     public void deleteProducts(Long productsId) {
         boolean exists = productsRepository.existsById(productsId);

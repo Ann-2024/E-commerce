@@ -6,7 +6,6 @@ import com.example.Ecommerce.Model.Addresses.Addresses;
 import com.example.Ecommerce.Model.Users.Users;
 import com.example.Ecommerce.repository.AddressRepository;
 import com.example.Ecommerce.repository.UsersRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,19 +22,20 @@ public class AddressService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public void addNewAddresses(Long id, List<Addresses> addressesList) {
+    public void addNewAddresses(Long id, Addresses addresses) {
+
+        Users users = usersRepository.findById(id).get();
+
+        if (users == null){
+
+            throw new RuntimeException("user not found");
+        }else {
 
 
-        Users users = usersRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
-
-
-        for (Addresses address : addressesList) {
-            address.setCreatedAt(new Date());
-            address.setUsers(users);
-            // Save each address individually
+            addresses.setCreatedAt(new Date());
+            addresses.setUsers(users);
+            addressRepository.save(addresses);
         }
-        addressRepository.saveAll(addressesList);
     }
 
     public List<Addresses> getAddresses() {

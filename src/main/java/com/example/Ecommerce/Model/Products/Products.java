@@ -2,7 +2,6 @@ package com.example.Ecommerce.Model.Products;
 
 import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
-import com.example.Ecommerce.Model.Image.Image;
 import com.example.Ecommerce.Model.Order.OrderItem;
 import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Seller.Seller;
@@ -42,9 +41,6 @@ public class Products {
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductsSkus> productsSkus;
 
-    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Image> image;
-
 
     @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlist;
@@ -80,7 +76,6 @@ public class Products {
     private String summary;
     private String cover;
     private String sku;
-
 
 
     private BigDecimal price;

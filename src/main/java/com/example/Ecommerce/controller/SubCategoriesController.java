@@ -26,10 +26,9 @@ public class  SubCategoriesController {
         return subCategoriesService.getSubCategoriesBYId(subCategoriesId);
     }
     @PostMapping("/add")
-    public void registerNewSubCategories(@RequestParam(name = "id") Long id, @RequestBody List<SubCategories> subCategories) {
-        subCategoriesService.addNewSubCategories(id, subCategories);
+    public void registerNewSubCategories(@RequestParam(name ="id")  Long id, @RequestBody SubCategories  subCategories) {
+        subCategoriesService.addNewSubCategories(id,subCategories);
     }
-
 
     @DeleteMapping(path = "{subCategoriesId}")
     public void deleteSubCategories(@PathVariable("subCategoriesId") Long subCategoriesId) {

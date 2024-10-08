@@ -1,7 +1,6 @@
 package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.Model.Cart.Cart;
-import com.example.Ecommerce.Model.Cart.CartItem.CartItem;
 import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Model.wishlist.Wishlist;
 import com.example.Ecommerce.Service.CartService;
@@ -36,8 +35,8 @@ public class  CartController {
     }
 
     @PostMapping("/add")
-    public List<String> registerNewCart(@RequestParam(name ="userId") Long userId,@RequestBody List<Cart> cart) {
-     return    cartService.addNewCarts(userId,cart);
+    public String registerNewCart(@RequestParam(name ="userId") Long userId) {
+     return    cartService.addNewCart(userId);
     }
 
     @DeleteMapping(path = "{cartId}")

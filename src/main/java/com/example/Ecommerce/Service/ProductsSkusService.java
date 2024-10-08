@@ -36,31 +36,28 @@ public class ProductsSkusService {
 
         return productsSkusRepository.findById(productsSkusId);
     }
-    public void addNewProductsSkus(Long productId, Long sizeAttributesId, Long colorAttributesId, List<ProductsSkus> productsSkusList) {
+    public void addNewProductsSkus(Long productId,Long sizeAttributesId,Long colorAttributesId,ProductsSkus productsSkus) {
 
-        // Fetch product and attributes
         Products products = productsRepository.findById(productId)
-                .orElseThrow(() -> new IllegalStateException("Product with the given id is not found: " + productId));
+                .orElseThrow(() -> new IllegalStateException("product with the given id is not given" +productId));
 
-        ProductsAttributes sizeAttributes = productsAttributesRepository.findById(sizeAttributesId)
-                .orElseThrow(() -> new IllegalStateException("Size attribute with the given id is not found: " + sizeAttributesId));
+        ProductsAttributes sizeAttributes  =productsAttributesRepository.findById(sizeAttributesId)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +sizeAttributesId));
 
-        ProductsAttributes colorAttributes = productsAttributesRepository.findById(colorAttributesId)
-                .orElseThrow(() -> new IllegalStateException("Color attribute with the given id is not found: " + colorAttributesId));
+        ProductsAttributes colorAttributes  =productsAttributesRepository.findById(colorAttributesId)
+                .orElseThrow(() -> new IllegalStateException("category with the given id is not given" +colorAttributesId));
 
-        // Loop over the list of ProductsSkus
-        for (ProductsSkus productsSkus : productsSkusList) {
-            productsSkus.setCreatedAt(LocalDateTime.now());
-            productsSkus.setDeletedAt(null);  // Set to null initially for all SKUs
+
+
+        productsSkus.setCreatedAt(LocalDateTime.now());
+            productsSkus.setDeletedAt(LocalDateTime.now());
             productsSkus.setProducts(products);
             productsSkus.setSizeAttributes(sizeAttributes);
             productsSkus.setColorAttributes(colorAttributes);
 
-            // Save each ProductsSkus to the repository
             productsSkusRepository.save(productsSkus);
-        }
-    }
 
+    }
 
     public void deleteProductsSkus(Long productsSkusId) {
         boolean exists = productsSkusRepository.existsById(productsSkusId);

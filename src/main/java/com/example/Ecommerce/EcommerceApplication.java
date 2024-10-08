@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = {"com.example.Ecommerce"})
+@SpringBootApplication
 public class EcommerceApplication {
 
 	public static void main(String[] args) {

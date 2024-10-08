@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,30 +34,28 @@ public class CartService {
         return cartRepository.findById(cartId);
     }
 
-    public List<String> addNewCarts(Long userId, List<Cart> carts) {
+    public String addNewCart( Long userId ) {
         Users users = usersRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("user with id " + userId + " does not exist"));
 
         Long id = users.getId();
-        Cart existingCart = cartRepository.findByUsersId(id);
+        Cart cart1 = cartRepository.findByUsersId(id);
 
-        List<String> responseMessages = new ArrayList<>();
-
-        if (existingCart != null) {
-            responseMessages.add("User with id " + userId + " already has a cart.");
+        if (cart1 != null) {
+            return "user already added to cart page";
         } else {
-            for (Cart cart : carts) {
-                cart.setCreatedAt(LocalDateTime.now());
-                cart.setDeletedAt(LocalDateTime.now());
-                cart.setUsers(users);
-                cartRepository.save(cart);
-                responseMessages.add("Cart successfully added for user with id " + userId);
-            }
+
+            System.out.println("Wishlist service");
+
+            Cart cart = new Cart();
+
+            cart.setCreatedAt(LocalDateTime.now());
+            cart.setDeletedAt(LocalDateTime.now());
+            cart.setUsers(users);
+            cartRepository.save(cart);
+            return "successfully added";
         }
-
-        return responseMessages;
     }
-
     public void deleteCart(Long cartId) {
         boolean exists = cartRepository.existsById(cartId);
         if (!exists) {

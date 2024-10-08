@@ -29,8 +29,8 @@ public class  ProductsAttributeController {
     }
 
     @PostMapping("/add")
-    public void registerNewProductAttributes(@RequestBody List<ProductsAttributes> productsAttributesList) {
-        productsAttributesService.addNewProductsAttributes(productsAttributesList);
+    public void registerNewProductAttributes( @RequestBody ProductsAttributes  productsAttributes) {
+        productsAttributesService.addNewProductsAttributes(productsAttributes);
     }
 
 
