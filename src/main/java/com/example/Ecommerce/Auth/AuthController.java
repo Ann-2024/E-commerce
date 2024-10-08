@@ -1,7 +1,7 @@
 package com.example.Ecommerce.Auth;
 
-import com.example.Ecommerce.user.User;
-import com.example.Ecommerce.user.repository.UserRepository;
+
+import com.example.Ecommerce.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/ecommerce/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin(value="*")
 public class AuthController {
 
     private final AuthService authService;
-    private final UserRepository userRepository;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest registerRequest
     ) throws EmailAlreadyExistsException {
         AuthenticationResponse authResponse = authService.register(registerRequest);
-        return ResponseEntity.ok(authResponse);
+
+        return ResponseEntity.ok(new AuthenticationResponse("success"));
 
     }
 

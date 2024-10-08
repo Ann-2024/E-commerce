@@ -1,7 +1,9 @@
 package com.example.Ecommerce.config;
 
+import com.example.Ecommerce.Model.Users.Users;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +24,18 @@ import java.util.*;
 public class JwtService {
 
     private static final String SECRET = "9a2f8c4e6b0d71f3e8b925a45747f894a3d6bc70fa8d5e21a15a6d8c3b9a0e7c";
-    public String generateToken(UserDetails user) {
+    public String generateToken(UserDetails users) {
+
+
         return Jwts.builder()
-                .setSubject(user.getUsername())
-                .claim("authorities", populateAuthorities(user.getAuthorities()))
+                .setSubject(users.getUsername()).claim("role", users.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
+    }
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
 
 
@@ -43,17 +49,19 @@ public class JwtService {
         for(GrantedAuthority authority: authorities) {
             authoritiesSet.add(authority.getAuthority());
         }
-        //MEMBER, ADMIN
         return String.join(",", authoritiesSet);
     }
 
+//    private Claims extractAllClaims(String token) {
+//        return Jwts
+//                .parserBuilder()
+//                .setSigningKey(getSigningKey())
+//                .build()
+//                .parseClaimsJws(token)
+//                .getBody();
+//    }
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getSigningKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+        return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
     }
 
     public String extractUsername(String token) {
@@ -68,5 +76,10 @@ public class JwtService {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()));
     }
+    public List<Map<String, String>> extractAuthorities(String token) {
+        Claims claims = extractAllClaims(token);
+        List<Map<String, String>> authorities = (List<Map<String, String>>) claims.get("role");
 
+        return authorities;
+    }
 }

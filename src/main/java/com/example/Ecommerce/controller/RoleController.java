@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/ecommerce/v1")
 @PreAuthorize("hasRole('ADMIN')")
+@CrossOrigin(value="*")
 public class RoleController {
 
     @GetMapping("/admin")
@@ -19,7 +20,7 @@ public class RoleController {
     @PostMapping("/admin")
     @PreAuthorize("hasAuthority('admin:create')")
     public String postAdmin() {
-        return "Secured Endpoint :: POST - Admin controller";
+        return "Secured Endpoint :: POST - Admin controllers";
 
     }
     @PutMapping("/admin/{id}")

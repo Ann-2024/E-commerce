@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.example.Ecommerce.user.Permission.*;
-import static com.example.Ecommerce.user.Role.*;
+import static com.example.Ecommerce.Model.user.Permission.*;
+import static com.example.Ecommerce.Model.user.Role.*;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -31,8 +31,21 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers("/ecommerce/v1/auth/**","/ecommerce/v1/**")
+
+
+                        req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**","/ecommerce/v1/**",
+                                        "/api/users/getall",
+                                        "/api/users/adduser","/api/address/**","/api/msg/**",
+                                        "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
+                                        "/api/products/**","/api/productsSkus/**","/api/cart/**",
+                                        "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
+                                        ("/api/orderItem/**"),("/api/orderDetails/**"),("/api/payment/**"),
+                                        ("/api/paymentDetails/**"),("/api/notification/**"),
+                                        "/ecommerce/v1/**","/api/bankDetail/**","/api/pincodes/**",
+                                        "/api/address/**","/api/seller/**")
+                                       
                                 .permitAll()
+                                .requestMatchers("/api/users/userByEmail").authenticated()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
                                 .requestMatchers(GET, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_READ.getPermission(),SELLER_READ.getPermission(), CUSTOMER_READ.getPermission())
                                 .requestMatchers(POST, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_CREATE.getPermission(), SELLER_CREATE.getPermission(), CUSTOMER_CREATE.getPermission())
@@ -46,6 +59,6 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
 
+    }
 }
