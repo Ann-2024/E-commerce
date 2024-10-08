@@ -46,6 +46,7 @@ public class  Users implements UserDetails {
 
     @JsonIgnore
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude // Prevents infinite recursion in the toString method
     private List<OrderDetails>orderDetails;
 
     private String avatar;
