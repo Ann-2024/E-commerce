@@ -21,6 +21,7 @@ public class  AddressController {
     public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody  List<Addresses> addressesList) {
         System.out.println("hello addres conntroller");
         addressService.addNewAddresses(id,addressesList);
+
         return "Address added successfully";
     }
 
@@ -34,18 +35,26 @@ public class  AddressController {
         return addressService.getAddressesBYId(addressId);
     }
 
+
     @GetMapping("/getByUser")
     public List<Addresses> getAddressesBYUser(@RequestParam(value = "userId") Long id) {
+
+        System.out.println("hii address controller");
         return addressService.getAddressesBYUser(id);
+
     }
 
     @DeleteMapping(path = "{addressId}")
     public void deleteAddresses(@PathVariable("addressId") Long addressId) {
+
         addressService.deleteAddresses(addressId);
+
     }
 
     @PutMapping(path = "{addressId}")
     public void updateAddresses(@RequestBody Addresses addresses, @PathVariable("addressId") Long addressId) {
+
        addressService.updateAddresses(addressId, addresses);
+
     }
 }

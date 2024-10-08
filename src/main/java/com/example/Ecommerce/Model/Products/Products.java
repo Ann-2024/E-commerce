@@ -61,7 +61,6 @@ public class Products {
 
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "subcategories_id", nullable = false)
     private SubCategories subCategories;
 

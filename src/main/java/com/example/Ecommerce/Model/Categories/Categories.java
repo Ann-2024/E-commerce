@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Model.Categories;
 
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ public class Categories {
 
     @OneToMany(mappedBy = "categories", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JsonManagedReference
+    @JsonIgnore
     private List<SubCategories> subCategories;
 
 }
