@@ -1,9 +1,10 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.controller;
 
 
-import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
+import com.example.Ecommerce.Service.PaymentService;
+import com.example.Ecommerce.Model.razorpay.PaymentDetail;
+import com.example.Ecommerce.config.razorpay.PaymentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/payment")
 @CrossOrigin(value="*")

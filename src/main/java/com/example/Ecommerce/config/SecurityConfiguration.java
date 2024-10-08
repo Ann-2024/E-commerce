@@ -3,6 +3,7 @@ package com.example.Ecommerce.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,6 +30,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
 
@@ -40,10 +42,14 @@ public class SecurityConfiguration {
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
                                         "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),("/api/payment/**"),
+
+                                        ("/api/paymentDetails/**"),("/api/notification/**"),("/api/image/**"),
+                                        "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**","/api/pincodes/**",
+
                                         ("/api/paymentDetails/**"),("/api/notification/**"),
                                         "/ecommerce/v1/**","/api/bankDetail/**","/api/pincodes/**",
                                         "/api/address/**","/api/seller/**")
-                                       
+
                                 .permitAll()
                                 .requestMatchers("/api/users/userByEmail").authenticated()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
@@ -51,8 +57,6 @@ public class SecurityConfiguration {
                                 .requestMatchers(POST, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_CREATE.getPermission(), SELLER_CREATE.getPermission(), CUSTOMER_CREATE.getPermission())
                                 .requestMatchers(PUT, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_UPDATE.getPermission(), SELLER_UPDATE.getPermission(), CUSTOMER_UPDATE.getPermission())
                                 .requestMatchers(DELETE, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_DELETE.getPermission(), SELLER_DELETE.getPermission(), CUSTOMER_DELETE.getPermission())
-
-
                                 .anyRequest()
                                 .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

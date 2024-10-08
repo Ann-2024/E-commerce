@@ -46,6 +46,7 @@ public class CartItemService {
         return cartItemRepository.findByCartId(cartId);
     }
 
+
     public void addNewCartItem(Long cartId,Long productsId,Long productsSkuId, CartItem cartItem) {
 
 
@@ -75,8 +76,6 @@ public class CartItemService {
         cartItem.setProducts(products);
         cartItem.setProductsSkus(productsSkus);
         cartItemRepository.save(cartItem);
-
-    }
 
     public void deleteCartItem(Long cartItemId) {
 

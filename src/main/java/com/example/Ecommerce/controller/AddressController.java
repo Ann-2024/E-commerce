@@ -18,10 +18,10 @@ public class  AddressController {
 
 
     @PostMapping("/add")
-    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody Addresses addresses) {
+    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody  List<Addresses> addressesList) {
+        System.out.println("hello addres conntroller");
+        addressService.addNewAddresses(id,addressesList);
 
-        System.out.println("hello address controller");
-        addressService.addNewAddresses(id,addresses);
         return "Address added successfully";
     }
 

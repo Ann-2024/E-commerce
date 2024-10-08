@@ -1,4 +1,4 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.config.razorpay;
 
 public enum PaymentStatus {
     INITIATED,

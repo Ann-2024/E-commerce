@@ -63,8 +63,8 @@ public class  CartItemController {
     public void registerCartItem(@RequestParam(name ="cartId")  Long cartId,
                                  @RequestParam(name ="productsId") Long productsId,
                                  @RequestParam(name ="productsSkuId") Long productsSkuId,
-                                 @RequestBody CartItem cartItem) {
-        cartItemService.addNewCartItem(cartId,productsId,productsSkuId, cartItem);
+                                 @RequestBody List<CartItem> cartItems) {
+        cartItemService.addNewCartItems(cartId,productsId,productsSkuId, cartItems);
     }
 
     @DeleteMapping(path = "{cartItemId}")

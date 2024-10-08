@@ -1,4 +1,4 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.Model.razorpay;
 
 import lombok.Data;
 import lombok.Getter;

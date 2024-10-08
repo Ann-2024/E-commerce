@@ -1,20 +1,22 @@
-package com.example.Ecommerce.razorpay;
+package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Order.OrderDetails;
 import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
-import com.example.Ecommerce.Model.Users.Users;
+import com.example.Ecommerce.Model.razorpay.PaymentDetail;
+import com.example.Ecommerce.Model.razorpay.PaymentLinkRequestDto;
+import com.example.Ecommerce.config.razorpay.PaymentStatus;
 import com.example.Ecommerce.repository.OrderDetailsRepository;
 import com.example.Ecommerce.repository.PaymentDetailsRepository;
+import com.example.Ecommerce.repository.PaymentGateway;
+import com.example.Ecommerce.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class PaymentService {
 
     private final PaymentGateway paymentGateway;
-    private   PaymentRepository paymentRepository;
+    private PaymentRepository paymentRepository;
     private final PaymentDetailsRepository paymentDetailsRepository;
     private final OrderDetailsRepository orderDetailsRepository;
 
@@ -25,7 +27,7 @@ public class PaymentService {
         this.orderDetailsRepository = orderDetailsRepository;
     }
 
-    public String createLink(String orderId,PaymentDetail paymentDetail) {
+    public String createLink(String orderId, PaymentDetail paymentDetail) {
         // Retrieve order details to populate the payment request DTO
         OrderDetails orderDetails = orderDetailsRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
@@ -48,7 +50,7 @@ public class PaymentService {
         return paymentLink;
     }
 
-    public PaymentStatus getPaymentStatus(Long paymentId, String orderId,PaymentDetail paymentDetail) {
+    public PaymentStatus getPaymentStatus(Long paymentId, String orderId, PaymentDetail paymentDetail) {
 //        Users users = usersRepository.findById(usersId).get();
 //        System.out.println("Wishlist service");
 //

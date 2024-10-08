@@ -36,12 +36,14 @@ public class ProductsAttributesService {
 
         return productsAttributesRepository.findById(productsAttributesId);
     }
-    public void addNewProductsAttributes(ProductsAttributes productsAttributes) {
-        productsAttributes.setCreatedAt(new Date());
-        productsAttributes.setDeletedAt(new Date());
-
-        productsAttributesRepository.save(productsAttributes);
+    public void addNewProductsAttributes(List<ProductsAttributes> productsAttributesList) {
+        for (ProductsAttributes productsAttribute : productsAttributesList) {
+            productsAttribute.setCreatedAt(new Date());
+            productsAttribute.setDeletedAt(null);  // Set deletedAt to null initially for all items
+        }
+        productsAttributesRepository.saveAll(productsAttributesList);
     }
+
 
     public void deleteProductsAttributes(Long productsAttributesId) {
         boolean exists = productsAttributesRepository.existsById(productsAttributesId);

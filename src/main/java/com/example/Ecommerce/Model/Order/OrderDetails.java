@@ -1,15 +1,8 @@
 package com.example.Ecommerce.Model.Order;
 
 
-import com.example.Ecommerce.Model.Cart.Cart;
-import com.example.Ecommerce.Model.Notification.Notification;
-import com.example.Ecommerce.Model.Order.PaymentDetails.PaymentDetails;
-import com.example.Ecommerce.Model.Products.Products;
-import com.example.Ecommerce.Model.Products.productsSkus.ProductsSkus;
 import com.example.Ecommerce.Model.Users.Users;
-import com.example.Ecommerce.razorpay.PaymentDetail;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.razorpay.Payment;
+import com.example.Ecommerce.Model.razorpay.PaymentDetail;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
