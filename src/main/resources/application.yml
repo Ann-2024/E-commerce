@@ -29,9 +29,6 @@ spring:
 
   database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-razorpay:
-  key: rzp_test_cWF3MY4jPZmK8Z
-  secret: gW79NCDroicKdyDE7RhEl9g4v
 
 twilio:
   accountSid:

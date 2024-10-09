@@ -1,10 +1,13 @@
 package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
+import com.example.Ecommerce.Model.Products.ProductDto;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.BankDetails_seller.BankDetails;
 import com.example.Ecommerce.Service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +31,15 @@ public class  ProductsController {
     }
 
     @PostMapping("/add")
-    public void registerNewProducts(
-                                    @RequestParam(name = "sellerId") Long sellerId,
-                                    @RequestParam(name ="subcategoriesId") Long subCategoriesId,
-                                    @RequestBody List<Products> productsList) {
-        productsService.addNewProducts(subCategoriesId, sellerId, productsList);
+    public ResponseEntity<String> registerNewProducts(
+            @RequestParam(name = "sellerId") Long sellerId,
+            @RequestBody List<ProductDto> productsList) {
+        try {
+            productsService.addNewProducts(sellerId, productsList);
+            return ResponseEntity.ok("Products added successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+        }
     }
 
     @DeleteMapping(path = "{productsId}")
