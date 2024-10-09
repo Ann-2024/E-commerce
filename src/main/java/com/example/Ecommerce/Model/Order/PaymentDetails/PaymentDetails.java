@@ -2,7 +2,7 @@ package com.example.Ecommerce.Model.Order.PaymentDetails;
 
 
 import com.example.Ecommerce.Model.Order.OrderItem;
-import com.example.Ecommerce.Model.razorpay.PaymentDetail;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,10 +31,8 @@ public class PaymentDetails {
     private OrderItem orderItem;
 
     private String PaymentLink;
-    @Enumerated(EnumType.STRING)
-    @OneToMany(mappedBy = "paymentDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PaymentDetail> paymentDetail;
 
+//    @Enumerated(EnumType.STRING)
     private String amount;
     private String provider;
     private String status;

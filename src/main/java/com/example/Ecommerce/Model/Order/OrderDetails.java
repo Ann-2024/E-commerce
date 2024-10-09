@@ -2,7 +2,7 @@ package com.example.Ecommerce.Model.Order;
 
 
 import com.example.Ecommerce.Model.Users.Users;
-import com.example.Ecommerce.Model.razorpay.PaymentDetail;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +30,7 @@ public class OrderDetails {
 
     @OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> orderItem;
-    @OneToMany(mappedBy = "orderDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PaymentDetail> paymentDetail;
+
 
 
 
