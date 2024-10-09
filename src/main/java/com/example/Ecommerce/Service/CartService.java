@@ -92,6 +92,14 @@ public class CartService {
 
         cartRepository.save(existingCart);
     }
+
+    public Optional<Cart> getCartByUser(Long userId) {
+
+        Cart existingCart= cartRepository.findByUsersId(userId);
+
+        return Optional.ofNullable(existingCart);
+
+    }
 }
 
 

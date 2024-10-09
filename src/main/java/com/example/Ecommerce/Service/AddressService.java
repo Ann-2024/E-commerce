@@ -17,14 +17,14 @@ import java.util.Optional;
 @Service
 public class AddressService {
 
+    @Autowired
     private AddressRepository addressRepository;
 
     @Autowired
     private UsersRepository usersRepository;
-    public AddressService(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
+
     public void addNewAddresses(Long id, List<Addresses> addressesList) {
+
 
         Users users = usersRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
@@ -68,9 +68,9 @@ public class AddressService {
         existingAddress.setTitle(updatedAddress.getTitle());
         existingAddress.setAddress_line_1(updatedAddress.getAddress_line_1());
         existingAddress.setAddress_line_2(updatedAddress.getAddress_line_2());
-        existingAddress.setCountry(updatedAddress.getCountry());
+        existingAddress.setCountry(existingAddress.getCountry());
         existingAddress.setCity(updatedAddress.getCity());
-        existingAddress.setPincode(updatedAddress.getPincode());
+        existingAddress.setPostalCode(updatedAddress.getPostalCode());
         existingAddress.setLandmark(updatedAddress.getLandmark());
         existingAddress.setPhoneNumber(updatedAddress.getPhoneNumber());
         existingAddress.setCreatedAt(new Date());
@@ -81,6 +81,7 @@ public class AddressService {
 
     public List<Addresses> getAddressesBYUser(Long id) {
 
+        System.out.println("get address by user");
     Users user = usersRepository.findById(id)
             .orElseThrow(()-> new RuntimeException("user with this id "+id+" not present"));
 

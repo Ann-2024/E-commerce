@@ -35,16 +35,23 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
 
 
-                        req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**","/ecommerce/v1/**","/api/users/**","/api/Address/**","/api/msg/**",
+                        req.requestMatchers("/ecommerce/v1/auth/**","/api/bankDetails/**","/ecommerce/v1/**",
+                                        "/api/users/getall",
+                                        "/api/users/adduser","/api/address/**","/api/msg/**",
                                         "/api/categories/**","/api/subCategories/**","/api/wishlist/**",
                                         "/api/products/**","/api/productsSkus/**","/api/cart/**",
                                         "/api/productsAttributes/**","/api/cartItem/**","/api/productpincodes/**",
                                         ("/api/orderItem/**"),("/api/orderDetails/**"),
+
                                         ("/api/paymentDetails/**"),("/api/notification/**"),("/api/image/**"),
                                         "/ecommerce/v1/**","/api/users/**","/api/bankDetail/**","/api/pincodes/**",
+
+                                        ("/api/paymentDetails/**"),("/api/notification/**"),
+                                        "/ecommerce/v1/**","/api/bankDetail/**","/api/pincodes/**",
                                         "/api/address/**","/api/seller/**")
 
                                 .permitAll()
+                                .requestMatchers("/api/users/userByEmail").authenticated()
                                 .requestMatchers("/ecommerce/v1/**").hasAnyRole(ADMIN.name(), SELLER.name(),CUSTOMER.name())
                                 .requestMatchers(GET, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_READ.getPermission(),SELLER_READ.getPermission(), CUSTOMER_READ.getPermission())
                                 .requestMatchers(POST, "/ecommerce/v1/**").hasAnyAuthority(ADMIN_CREATE.getPermission(), SELLER_CREATE.getPermission(), CUSTOMER_CREATE.getPermission())

@@ -30,6 +30,11 @@ public class  CartController {
         return cartService.getCartBYId(cartId);
     }
 
+    @GetMapping("/getCartByUser")
+    public Optional<Cart> getCartByUser(@RequestParam(value = "id") Long userId) {
+        return cartService.getCartByUser(userId);
+    }
+
     @PostMapping("/add")
     public List<String> registerNewCart(@RequestParam(name ="userId") Long userId,@RequestBody List<Cart> cart) {
      return    cartService.addNewCarts(userId,cart);

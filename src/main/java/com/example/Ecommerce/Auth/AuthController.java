@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-    private  UsersRepository usersRepository;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest registerRequest
     ) throws EmailAlreadyExistsException {
         AuthenticationResponse authResponse = authService.register(registerRequest);
-        return ResponseEntity.ok(new AuthenticationResponse("Success"));
+
+        return ResponseEntity.ok(new AuthenticationResponse("success"));
 
     }
 

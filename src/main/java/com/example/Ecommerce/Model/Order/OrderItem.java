@@ -31,12 +31,15 @@ public class OrderItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Notification> notification;
 
 
     @ManyToOne
+
+
     @JsonIgnore
     @JoinColumn(name = "order_Id", nullable = false)
     private OrderDetails orderDetails;

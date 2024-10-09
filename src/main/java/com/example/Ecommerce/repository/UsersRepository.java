@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Optional;
-@EnableJpaRepositories(basePackages = "com.example.Ecommerce.repository.jpa")
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
     @Query("SELECT s FROM Users s WHERE s.email = :email ")
