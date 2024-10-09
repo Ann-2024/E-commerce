@@ -17,7 +17,7 @@ public class  ImageController {
     private ImageService imageService;
 
     @PostMapping("/add")
-    public String registerNewImage(@RequestParam (name ="productId") Long productId, @RequestBody  List<Image> imageList) {
+    public String registerNewImage(@RequestParam (name ="productId") Long productId, @RequestBody  List<Image>imageList) {
         System.out.println("hello address conntroller");
         imageService.addNewImage(productId,imageList);
         return "Address added successfully";

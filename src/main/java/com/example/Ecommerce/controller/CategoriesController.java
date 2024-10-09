@@ -20,13 +20,14 @@ public class  CategoriesController {
     public List<Categories> getCategories() {
         return categoriesService.getCategories();
     }
+
     @GetMapping("/getall/{id}")
     public Optional<Categories> getCategoriesBYId(@PathVariable(value = "id") Long categoriesId) {
         return categoriesService.getCategoriesBYId(categoriesId);
     }
     @PostMapping("/add")
-    public void registerNewCategories(@RequestBody List<Categories> categoriess) {
-        categoriesService.addNewCategories(categoriess);
+    public void registerNewCategories(@RequestBody List<Categories> categories) {
+        categoriesService.addNewCategories(categories);
     }
 
 

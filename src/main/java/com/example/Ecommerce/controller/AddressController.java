@@ -18,7 +18,7 @@ public class  AddressController {
 
 
     @PostMapping("/add")
-    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody  List<Addresses> addressesList) {
+    public String registerNewAddresses(@RequestParam (name ="id") Long id, @RequestBody  Addresses addressesList) {
         System.out.println("hello addres conntroller");
         addressService.addNewAddresses(id,addressesList);
 

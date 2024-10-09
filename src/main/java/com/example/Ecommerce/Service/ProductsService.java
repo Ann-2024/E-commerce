@@ -31,6 +31,7 @@ public class ProductsService {
     public List<Products> getProducts() {
         return productsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
+
     public Optional<Products> getProductsBYId(Long productsId) {
 
         return productsRepository.findById(productsId);

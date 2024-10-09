@@ -35,28 +35,28 @@ public class CartService {
         return cartRepository.findById(cartId);
     }
 
-    public List<String> addNewCarts(Long userId, List<Cart> carts) {
-        Users users = usersRepository.findById(userId)
-                .orElseThrow(() -> new IllegalStateException("user with id " + userId + " does not exist"));
+    public String addNewCarts(Long userId, Cart carts) {
 
-        Long id = users.getId();
-        Cart existingCart = cartRepository.findByUsersId(id);
+            Users users = usersRepository.findById(userId)
+                    .orElseThrow(() -> new IllegalStateException("user with id " + userId + " does not exist"));
 
-        List<String> responseMessages = new ArrayList<>();
+            Long id = users.getId();
+            Cart cart1 = cartRepository.findByUsersId(id);
 
-        if (existingCart != null) {
-            responseMessages.add("User with id " + userId + " already has a cart.");
-        } else {
-            for (Cart cart : carts) {
+            if (cart1 != null) {
+                return "user already added to cart page";
+            } else {
+
+                System.out.println("Wishlist service");
+
+                Cart cart = new Cart();
+
                 cart.setCreatedAt(LocalDateTime.now());
                 cart.setDeletedAt(LocalDateTime.now());
                 cart.setUsers(users);
-                cartRepository.save(cart);
-                responseMessages.add("Cart successfully added for user with id " + userId);
+                cartRepository.save(carts);
+                return "successfully added";
             }
-        }
-
-        return responseMessages;
     }
 
     public void deleteCart(Long cartId) {

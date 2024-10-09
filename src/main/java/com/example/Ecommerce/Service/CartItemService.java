@@ -76,6 +76,7 @@ public class CartItemService {
         cartItem.setProducts(products);
         cartItem.setProductsSkus(productsSkus);
         cartItemRepository.save(cartItem);
+}
 
     public void deleteCartItem(Long cartItemId) {
 
