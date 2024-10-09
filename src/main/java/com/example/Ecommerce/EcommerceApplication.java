@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = {"com.example.Ecommerce"})
+@SpringBootApplication
 public class EcommerceApplication {
 
 	public static void main(String[] args) {
 
 		SpringApplication app = new SpringApplication(EcommerceApplication.class);
-		app.setAdditionalProfiles("debug");
+
 		app.run(args);
 	}
 

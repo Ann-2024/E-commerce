@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Model.Categories.sub_categories.SubCategories;
+import com.example.Ecommerce.Model.Products.ProductDto;
 import com.example.Ecommerce.Model.Products.Products;
 import com.example.Ecommerce.Model.Seller.Seller;
 import com.example.Ecommerce.repository.ProductsRepository;
@@ -38,22 +39,36 @@ public class ProductsService {
     }
 
 
-    public void addNewProducts(Long subCategoriesId, Long sellerId, List<Products> productsList) {
+    public void addNewProducts(Long sellerId, List<ProductDto> productsList) {
 
         Seller seller = sellerRepository.findById(sellerId)
                 .orElseThrow(() -> new RuntimeException("Seller not found"));
-        SubCategories subCategoriess = subCategoriesRepository.findById(subCategoriesId)
-                .orElseThrow(() -> new RuntimeException("Seller not found"));
 
-        System.out.println("Adding products");
 
-        for (Products products : productsList) {
+        // Assuming subCategoriesId is a field inside each Products object, not a separate list
+        for (ProductDto products : productsList) {
+            // Ensure subCategoriesId is available in each product
+            Products product1 = new Products();
+            // Retrieve the subcategory using the ID from the product
+            SubCategories subCategories = subCategoriesRepository.findById(products.getSubCategoriesId())
+                    .orElseThrow(() -> new RuntimeException("Subcategory not found"));
 
-            products.setCreatedAt(LocalDateTime.now());
-            products.setDeletedAt(LocalDateTime.now());
-            products.setSubCategories(subCategoriess);
-            products.setSeller(seller);
-            productsRepository.save(products);
+
+            // Set necessary fields in each product
+            product1.setCreatedAt(LocalDateTime.now());
+            product1.setDeletedAt(LocalDateTime.now());
+            product1.setSubCategories(subCategories); // Associate subcategory with product
+            product1.setSeller(seller); // Associate seller with product
+            product1.setName(products.getName());
+            product1.setSku(products.getSku());
+            product1.setPrice(products.getPrice());
+            product1.setDescription(products.getDescription());
+            product1.setCover(products.getCover());
+            product1.setSummary(products.getSummary());
+
+
+            // Save the product to the repository
+            productsRepository.save(product1);
         }
     }
 
